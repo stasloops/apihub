@@ -1,0 +1,34 @@
+.header {
+    padding: 20px;
+    background-color: #333333;
+
+    &__container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        font-weight: 700;
+    }
+
+    &__sign {
+        background-color: #66ddf6;
+        padding: 5px 10px;
+        border-radius: 5px;
+
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+
+        margin-left: 20px;
+    }
+
+    &__login {
+        font-size: 14px;
+    }
+}
