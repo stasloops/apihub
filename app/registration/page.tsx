@@ -33,7 +33,7 @@ const Registration = () => {
                 password: value.password,
                 captcha: value.captcha
             }
-            const res = await axios.post(`http://135.181.24.29/api/v1/users/register`, data)
+            const res = await axios.post(`https://apihub.translo.org//api/v1/users/register`, data)
             // const res = await axios.get('http://jservice.io/api/random?count=1')
 
 
