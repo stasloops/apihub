@@ -23,12 +23,20 @@ const Registration = () => {
 
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        if (value.password.length < 20) {
-            return null
-        }
+        // if (value.password.length < 20) {
+        //     return null
+        // }
 
         try {
-            const res = await axios.post(`http://135.181.24.29//api/v1/users/register`, value)
+            const data = {
+                email: value.email,
+                password: value.password,
+                captcha: value.captcha
+            }
+            const res = await axios.post(`http://135.181.24.29/api/v1/users/register`, data)
+            // const res = await axios.get('http://jservice.io/api/random?count=1')
+
+
             setUser(res.data)
         } catch (er) {
             console.log(er);

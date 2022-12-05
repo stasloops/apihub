@@ -7,9 +7,9 @@ const font = Montserrat()
 
 export default function RootLayout({children,}: {children: React.ReactNode}) {
   return (
-    <html>
+    <html className={font.className}>
       <head />
-      <body className={font.className}>
+      <body>
         <Providers>
           <Header />
           {children}
