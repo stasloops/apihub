@@ -6,12 +6,14 @@ import Providers from './provider/Providers';
 const font = Montserrat()
 
 export default function RootLayout({children,}: {children: React.ReactNode}) {
+  
+  
   return (
     <html className={font.className}>
       <head />
       <body>
         <Providers>
-          <Header />
+          <Header/>
           {children}
         </Providers>
       </body>

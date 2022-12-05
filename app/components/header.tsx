@@ -1,10 +1,11 @@
 "use client"
 
 import Link from 'next/link'
-import React from 'react'
+import React, { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../../logic/hooks/useRedux'
 import { toggleTheme } from '../../logic/redux/slices/themeSlice'
 import style from '../../styles/header.module.scss'
+
 
 const Header = () => {
     const dispatch = useAppDispatch()
@@ -31,9 +32,6 @@ const Header = () => {
         }
         dispatch(toggleTheme(theme.black))
     }
-
-    console.log(activeTheme, variant);
-
 
     return (
         <header
