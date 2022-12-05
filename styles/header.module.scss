@@ -26,12 +26,16 @@
     &__right {
         display: flex;
         align-items: center;
+        font-weight: 700;
     }
 
     &__input {
-        padding: 5px 8px;
+        padding: 7px 8px;
+        width: 30%;
+        max-width: 250px;
         border: none;
         border-radius: 5px;
+        margin: 0 10px;
 
         &:focus-visible {
             outline: 0;
@@ -44,6 +48,10 @@
         font-size: 24px;
         color: $main;
         margin-right: 40px;
+
+        @media screen and (max-width: 900px) {
+            margin-right: 20px;
+        }
     }
 
     &__theme {
@@ -72,6 +80,9 @@
     &__nav {
         display: flex;
 
+        @media screen and (max-width: 900px) {
+            display: none;
+        }
         &_item {
             color: $mainSecond;
             font-size: 14px;
@@ -99,5 +110,9 @@
     &__login {
         font-size: 14px;
         margin-left: 25px;
+
+        @media screen and (max-width: 900px) {
+            margin: 0;
+        }
     }
 }
