@@ -1,0 +1,87 @@
+"use client"
+
+import axios from 'axios'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import { useAppSelector } from '../../logic/hooks/useRedux'
+import style from '../../styles/login.module.scss'
+
+const Login = () => {
+  const { variant } = useAppSelector((state) => state.theme)
+  const [value, setValue] = useState({ email: '', password: '', captcha: "captcha solution" })
+  const [user, setUser] = useState({})
+
+  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((prev) => ({ ...prev, email: e.target.value }))
+  }
+  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((prev) => ({ ...prev, password: e.target.value }))
+  }
+
+  const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (value.password.length < 20) {
+      return null
+    }
+
+    try {
+      const res = await axios.post(`http://135.181.24.29//api/v1/users/login`, value)
+      setUser(res.data)
+    } catch (er) {
+      console.log(er);
+    }
+  }
+  return (
+    <form
+      style={{
+        backgroundColor: variant.background,
+        color: variant.color,
+      }}
+      className={style.login}
+    >
+      <div className={style.login__container}>
+        <h1 className={style.login__title}>Log In</h1>
+        <div className={style.login__input_box}>
+          <label className={style.login__label}>Email</label>
+          <input
+            placeholder='E-mail'
+            style={{
+              backgroundColor: variant.backgroundThree,
+              color: variant.color,
+            }}
+            className={style.login__input}
+            value={value.email}
+            onChange={changeEmail}
+          />
+        </div>
+        <div className={style.login__input_box}>
+          <label className={style.login__label}>Password</label>
+          <input
+            placeholder='Password'
+            style={{
+              backgroundColor: variant.backgroundThree,
+              color: variant.color,
+            }}
+            className={style.login__input}
+            value={value.password}
+            onChange={changePassword}
+          />
+        </div>
+        <button
+          className={style.login__button}
+          onClick={login}
+        >
+          Log In
+        </button>
+        <span className={style.login__swap}>
+          Not a member yet?
+          <Link className={style.login__swap_link} href="/registration">
+            Sign up
+          </Link>
+        </span>
+      </div>
+    </form>
+  )
+}
+
+export default Login

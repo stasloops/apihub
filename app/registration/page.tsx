@@ -1,36 +1,102 @@
 "use client"
 
 import axios from 'axios'
+import Link from 'next/link'
 import React, { useState } from 'react'
-
+import { useAppSelector } from '../../logic/hooks/useRedux'
+import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
+    const { variant } = useAppSelector((state) => state.theme)
+    const [value, setValue] = useState({username: '', email: '', password: '', captcha: "captcha solution" })
     const [user, setUser] = useState({})
+
+    const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue((prev) => ({ ...prev, email: e.target.value }))
+    }
+    const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue((prev) => ({ ...prev, password: e.target.value }))
+    }
+    const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue((prev) => ({ ...prev, username: e.target.value }))
+    }
 
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
+        if (value.password.length < 20) {
+            return null
+        }
 
         try {
-            const data = {
-                email: "test@mail.ru",
-                password: "Password2!",
-                captcha: "captcha solution"
-            }
-
-            const res = await axios.post('http://135.181.24.29//api/v1/users/register', data)
+            const res = await axios.post(`http://135.181.24.29//api/v1/users/register`, value)
             setUser(res.data)
-        } catch (e) {
-            console.log(e);
+        } catch (er) {
+            console.log(er);
         }
     }
 
-
     return (
-        <form>
-            Registratio
-            <button onClick={register}>
-                SEND
-            </button>
+        <form
+            style={{
+                backgroundColor: variant.background,
+                color: variant.color,
+            }}
+            className={style.sign}
+        >
+            <div className={style.sign__container}>
+                <h1 className={style.sign__title}>SignUp</h1>
+                <div className={style.sign__input_box}>
+                    <label className={style.sign__label}>Username</label>
+                    <input
+                        placeholder='Type your username'
+                        style={{
+                            backgroundColor: variant.backgroundThree,
+                            color: variant.color,
+                        }}
+                        className={style.sign__input}
+                        value={value.username}
+                        onChange={changeUsername}
+                    />
+                </div>
+                <div className={style.sign__input_box}>
+                    <label className={style.sign__label}>Email</label>
+                    <input
+                        placeholder='E-mail'
+                        style={{
+                            backgroundColor: variant.backgroundThree,
+                            color: variant.color,
+                        }}
+                        className={style.sign__input}
+                        value={value.email}
+                        onChange={changeEmail}
+                    />
+                </div>
+                <div className={style.sign__input_box}>
+                    <label className={style.sign__label}>Password</label>
+                    <input
+                        placeholder='Password'
+                        style={{
+                            backgroundColor: variant.backgroundThree,
+                            color: variant.color,
+                        }}
+                        className={style.sign__input}
+                        value={value.password}
+                        onChange={changePassword}
+                    />
+                </div>
+                <button
+                    className={style.sign__button}
+                    onClick={register}
+                >
+                    SIGN UP
+                </button>
+                <span className={style.sign__swap}>
+                    Already on ApiHub?
+                    <Link className={style.sign__swap_link} href="/login">
+                        Log in
+                    </Link>
+                </span>
+            </div>
         </form>
     )
 }

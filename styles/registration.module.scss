@@ -1,0 +1,68 @@
+@import "./styles.scss";
+
+.sign {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 100px;
+    transition: 1s;
+
+    &__container {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    &__title {
+        font-size: 30px;
+        margin-bottom: 50px;
+    }
+
+    &__input {
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        width: 100%;
+        margin-top: 8px;
+
+        &:focus-visible {
+            outline: 0;
+        }
+
+        &_box {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__label {
+        font-size: 12px;
+    }
+
+    &__button {
+        background-color: $mainSecond;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 0px;
+        width: 100%;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    &__swap {
+        margin-top: 20px;
+        font-size: 12px;
+
+        &_link {
+            color: #1890ff;
+            margin-left: 5px;
+        }
+    }
+}
