@@ -1,19 +1,17 @@
 import { Red_Hat_Display } from '@next/font/google'
-import Header from './components/header'
+import Header from './(components)/header'
 import '../styles/globals.css'
 import Providers from './provider/Providers';
 
 const font = Red_Hat_Display()
 
-export default function RootLayout({children,}: {children: React.ReactNode}) {
-  
-  
+export default function RootLayout({ children, }: { children: React.ReactNode }) {
   return (
     <html className={font.className}>
       <head />
       <body>
         <Providers>
-          <Header/>
+          <Header />
           {children}
         </Providers>
       </body>

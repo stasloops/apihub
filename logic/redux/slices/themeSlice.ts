@@ -9,13 +9,13 @@ const themeSlice = createSlice({
             background: '#F5F5F5',
             backgroundSecond: '#F5F5F5',
             backgroundThree: '#e5e5e5'
-        }
+        },
     },
     reducers: {
         toggleTheme(state, action) {
             state.activeTheme = state.activeTheme === "black" ? "white" : "black",
             state.variant = action.payload
-        }
+        },
     }
 })
 

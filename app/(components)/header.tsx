@@ -1,15 +1,15 @@
 "use client"
 
 import Link from 'next/link'
-import React, { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../../logic/hooks/useRedux'
-import { toggleTheme } from '../../logic/redux/slices/themeSlice'
+import { toggleTheme } from '../../logic/redux'
 import style from '../../styles/header.module.scss'
-
 
 const Header = () => {
     const dispatch = useAppDispatch()
-    const { activeTheme, variant } = useAppSelector((state) => state.theme)
+    const { activeTheme, variant } = useAppSelector((state) => state.theme) // bad. lots of renderers
+    // const activeTheme = useAppSelector((state) => state.theme.activeTheme) // right
+    // const variant = useAppSelector((state) => state.theme.variant) // right
 
     const theme = {
         black: {
@@ -55,7 +55,6 @@ const Header = () => {
                         className={style.header__theme}
                     >
                         <span
-
                             className={style.header__theme_button}
                         ></span>
                     </span>
@@ -70,21 +69,15 @@ const Header = () => {
                 />
                 <div className={style.header__right}>
                     <nav className={style.header__nav}>
-                        <div className={style.header__nav_item}>
-                            API Hub
-                        </div>
-                        <div className={style.header__nav_item}>
-                            My Apps
-                        </div>
-                        <div className={style.header__nav_item}>
-                            My APIs
-                        </div>
+                        <Link href="/hub" className={style.header__nav_item}>
+                            Main
+                        </Link>
                     </nav>
                     <div className={style.header__auth}>
-                        <Link className={style.header__login} href="/login">
+                        <Link href="/login" className={style.header__login}>
                             Log In
                         </Link>
-                        <Link className={style.header__sign} href="/registration">
+                        <Link href="/registration" className={style.header__sign}>
                             Sign Up
                         </Link>
                     </div>

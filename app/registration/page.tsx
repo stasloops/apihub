@@ -8,8 +8,10 @@ import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
     const { variant } = useAppSelector((state) => state.theme)
-    const [value, setValue] = useState({username: '', email: '', password: '', captcha: "captcha solution" })
-    const [user, setUser] = useState({})
+    console.log('render');
+
+    const [value, setValue] = useState({ username: '', email: '', password: '', captcha: "captcha solution" })
+    const [user, setUser] = useState<any>({})
 
     const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue((prev) => ({ ...prev, email: e.target.value }))
@@ -23,9 +25,9 @@ const Registration = () => {
 
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        // if (value.password.length < 20) {
-        //     return null
-        // }
+        if (value.password.length < 20) {
+            return null
+        }
 
         try {
             const data = {
@@ -35,7 +37,6 @@ const Registration = () => {
             }
             const res = await axios.post(`https://apihub.translo.org/api/v1/users/register`, data)
             // const res = await axios.get('http://jservice.io/api/random?count=1')
-
 
             setUser(res.data)
         } catch (er) {
@@ -104,6 +105,11 @@ const Registration = () => {
                         Log in
                     </Link>
                 </span>
+                {
+                    <div>
+                        {user?.ok ? user?.ok : 'но'}
+                    </div>
+                }
             </div>
         </form>
     )
