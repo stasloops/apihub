@@ -25,13 +25,12 @@ const Registration = () => {
 
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        if (value.password.length < 20) {
-            return null
-        }
+    
 
         try {
             const data = {
                 email: value.email,
+
                 password: value.password,
                 captcha: value.captcha
             }
