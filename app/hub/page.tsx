@@ -1,9 +1,9 @@
 "use client"
 
-import FilterHub from '../(components)/filterHub'
-import ListHub from '../(components)/listHub'
 import { useAppSelector } from '../../logic/hooks/useRedux'
 import styles from '../../styles/hub.module.scss'
+import DemonstrativeHub from '../(components)/demonstrativeHub'
+import ListHub from '../(components)/listHub'
 
 const Hub = () => {
     const { variant } = useAppSelector((state) => state.theme)
@@ -17,7 +17,7 @@ const Hub = () => {
             className={styles.hub}
         >
             <div className={styles.hub__container}>
-                <FilterHub />
+                <DemonstrativeHub />
                 <ListHub />
             </div>
         </main>
