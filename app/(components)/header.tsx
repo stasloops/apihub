@@ -72,6 +72,9 @@ const Header = () => {
                         <Link href="/hub" className={style.header__nav_item}>
                             Main
                         </Link>
+                        <Link href="/list" className={style.header__nav_item}>
+                            APIs
+                        </Link>
                     </nav>
                     <div className={style.header__auth}>
                         <Link href="/login" className={style.header__login}>

@@ -8,13 +8,7 @@
         max-width: 95vw;
         margin: 0 auto;
         min-height: 100vh;
-
         padding-top: 50px;
-        // display: flex;
-    }
-
-    &__filter {
-        width: 30%;
     }
 
     &__demonstrative {
@@ -58,34 +52,14 @@
             color: rgb(74, 74, 74);
             margin-right: 10px;
         }
+
     }
 
     &__title {
         font-size: 16px;
         margin-left: 15px;
-
-        &_filter {
-            font-size: 14px;
-            margin-top: 20px;
-        }
     }
 
-    &__categories {
-        width: 80%;
-        display: flex;
-        flex-wrap: wrap;
-
-        &_item {
-            background-color: rgb(171, 241, 114);
-            color: rgb(29, 30, 27);
-            display: inline-block;
-            border-radius: 5px;
-            padding: 4px 8px;
-            font-size: 14px;
-            margin: 0 6px 6px 0;
-            cursor: pointer;
-        }
-    }
 
     &__popular {
         width: 100%;
@@ -102,15 +76,5 @@
             color: rgba(250, 235, 215, 0);
             border-radius: 5px;
         }
-    }
-
-    &__show {
-        border: none;
-        border-radius: 5px;
-        padding: 4px 8px;
-        // font-weight: 700;
-        display: inline-block;
-        cursor: pointer;
-
     }
 }

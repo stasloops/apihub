@@ -3,15 +3,15 @@
 import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useGetUser } from '../../logic/hooks/useGetUser'
 import { useAppSelector } from '../../logic/hooks/useRedux'
+import { $request, API_URL } from '../../logic/request'
 import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
     const { variant } = useAppSelector((state) => state.theme)
-    console.log('render');
-
     const [value, setValue] = useState({ username: '', email: '', password: '', captcha: "captcha solution" })
-    const [user, setUser] = useState<any>({})
+    const { setUserId } = useGetUser()
 
     const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue((prev) => ({ ...prev, email: e.target.value }))
@@ -26,29 +26,15 @@ const Registration = () => {
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
-
         try {
             const data = {
-                // name: 'a',
-                // username: 'as',
-                // category: [2]
-                email: "armanokka@mail.ru" || value.email,
-                password: "123" || value.password,
+                email: value.email,
+                password: value.password,
                 captcha: value.captcha
             }
-            // const res = await axios.post(`https://apihub.translo.org/api/v1/users/register`, data)
-            const res = await fetch('https://apihub.translo.org/api/v1/users/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-
-                body: JSON.stringify(data),
-            })
-            // const res = await axios.get('http://jservice.io/api/random?count=1')
-            console.log(res, res.json());
-            
-            // setUser(res)
+            const res = await $request.post(`/users/register`, data)
+            const userId: number = res.data.user_id
+            setUserId(userId)
         } catch (er) {
             console.log(er);
         }
@@ -115,11 +101,6 @@ const Registration = () => {
                         Log in
                     </Link>
                 </span>
-                {
-                    <div>
-                        {user?.ok ? user?.ok : 'но'}
-                    </div>
-                }
             </div>
         </form>
     )

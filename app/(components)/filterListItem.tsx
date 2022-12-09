@@ -1,7 +1,7 @@
 "use client"
 
 import { FC, useState } from 'react'
-import styles from '../../styles/hub.module.scss'
+import styles from '../../styles/list.module.scss'
 
 interface Categories {
     id: number
@@ -17,7 +17,7 @@ interface Props {
     item: Item
 }
 
-const FilterHubItem: FC<Props> = ({ item }) => {
+const FilterListItem: FC<Props> = ({ item }) => {
     const [show, setShow] = useState(false)
 
     const filtredCategories = !show && item.showAll ?
@@ -31,14 +31,14 @@ const FilterHubItem: FC<Props> = ({ item }) => {
 
     return (
         <>
-            <h1 className={styles.hub__title_filter}>
+            <h1 className={styles.list__filter_title}>
                 {item.title}
             </h1>
-            <div className={styles.hub__categories}>
+            <div className={styles.list__filter_categories}>
                 <>
                     {
                         filtredCategories.map((item: any, id: number) => (
-                            <div key={id} className={styles.hub__categories_item}>{item.name}</div>
+                            <div key={id} className={styles.list__filter_categories_item}>{item.name}</div>
                         ))
                     }
                 </>
@@ -47,11 +47,11 @@ const FilterHubItem: FC<Props> = ({ item }) => {
                         null
                         :
                         show ?
-                            <span onClick={() => showMore(false)} className={styles.hub__show}>
+                            <span onClick={() => showMore(false)} className={styles.list__filter_show}>
                                 Скрыть
                             </span>
                             :
-                            <span onClick={() => showMore(true)} className={styles.hub__show}>
+                            <span onClick={() => showMore(true)} className={styles.list__filter_show}>
                                 + {hiddenElements}
                             </span>
                 }
@@ -61,4 +61,4 @@ const FilterHubItem: FC<Props> = ({ item }) => {
     )
 }
 
-export default FilterHubItem
+export default FilterListItem

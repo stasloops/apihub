@@ -3,7 +3,7 @@
 import { useAppSelector } from '../../logic/hooks/useRedux'
 import styles from '../../styles/hub.module.scss'
 import DemonstrativeHub from '../(components)/demonstrativeHub'
-import ListHub from '../(components)/listHub'
+import List from '../list/page'
 
 const Hub = () => {
     const { variant } = useAppSelector((state) => state.theme)
@@ -18,7 +18,7 @@ const Hub = () => {
         >
             <div className={styles.hub__container}>
                 <DemonstrativeHub />
-                <ListHub />
+                <List />
             </div>
         </main>
     )
