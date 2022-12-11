@@ -3,6 +3,7 @@ import dio from '../../public/dio4.jpg'
 import Image from 'next/image'
 import { useAppSelector } from '../../logic/hooks/useRedux'
 import { useSvg } from '../../logic/hooks/useSvg'
+import Link from 'next/link'
 
 const ListApis = () => {
   const a = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,]
@@ -22,7 +23,7 @@ const ListApis = () => {
       <div className={styles.list__apis_items}>
         {
           a.map((item, id) => (
-            <div style={{ backgroundColor: item === 1 ? variant.background : variant.backgroundThree }} className={styles.list__api} key={id}>
+            <Link href={`/service/${item}`} style={{ backgroundColor: item === 1 ? variant.background : variant.backgroundThree }} className={styles.list__api} key={id}>
               <span className={styles.list__api_index}>{id + 1}</span>
               <Image className={styles.list__api_img} alt="image" src={dio} placeholder="blur" />
               <div className={styles.list__api_table}>
@@ -32,7 +33,7 @@ const ListApis = () => {
                 <span className={styles.list__api_category}>Translainment</span>
                 <span className={styles.list__api_uptime}>4%</span>
               </div>
-            </div>
+            </Link>
           ))
         }
         <span style={{
