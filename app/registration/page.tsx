@@ -10,7 +10,7 @@ import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
     const { variant } = useAppSelector((state) => state.theme)
-    const [value, setValue] = useState({ username: '', email: '', password: '', captcha: "captcha solution" })
+    const [value, setValue] = useState({ email: '', password: '', captcha: "captcha solution" })
     const { setUserId } = useGetUser()
 
     const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,9 +18,6 @@ const Registration = () => {
     }
     const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue((prev) => ({ ...prev, password: e.target.value }))
-    }
-    const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue((prev) => ({ ...prev, username: e.target.value }))
     }
 
     const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,8 +29,19 @@ const Registration = () => {
                 password: value.password,
                 captcha: value.captcha
             }
-            const res = await $request.post(`/users/register`, data)
-            const userId: number = res.data.user_id
+            // const res = await $request.post(`/users/register`, data)
+            const res = await fetch(`${API_URL}/users/register`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            })
+
+            const transform: any = res.json()
+            // res.data.user_id
+            const userId: number = transform.user_id
             setUserId(userId)
         } catch (er) {
             console.log(er);
@@ -50,19 +58,6 @@ const Registration = () => {
         >
             <div className={style.sign__container}>
                 <h1 className={style.sign__title}>SignUp</h1>
-                <div className={style.sign__input_box}>
-                    <label className={style.sign__label}>Username</label>
-                    <input
-                        placeholder='Type your username'
-                        style={{
-                            backgroundColor: variant.backgroundThree,
-                            color: variant.color,
-                        }}
-                        className={style.sign__input}
-                        value={value.username}
-                        onChange={changeUsername}
-                    />
-                </div>
                 <div className={style.sign__input_box}>
                     <label className={style.sign__label}>Email</label>
                     <input
