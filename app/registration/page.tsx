@@ -32,7 +32,7 @@ const Registration = () => {
             // const res = await $request.post(`/users/register`, data)
             const res = await fetch(`${API_URL}/users/register`, {
                 method: 'POST',
-                credentials: 'include',
+                // credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
