@@ -10,7 +10,9 @@ export default function Home() {
 
 
   useEffect(() => {
-    window.localStorage.getItem('token')
+    // if (typeof window !== "undefined") {
+    //   localStorage.getItem('token')
+    // }
   }, [])
 
   return (

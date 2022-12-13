@@ -14,21 +14,21 @@ interface InitialState {
   isAuth: boolean
 }
 
-const getUserFromLocalStorage = () => {
-  if (typeof window !== "undefined") {
-    const user: string | null = window.localStorage.getItem('user')
-    const parse: User = user ? JSON.parse(user) : null
+// const getUserFromLocalStorage = () => {
+//   if (typeof window !== "undefined") {
+//     const user: string | null = window.localStorage.getItem('user')
+//     const parse: User = user ? JSON.parse(user) : null
 
-    return parse
-  }
-}
-const user = getUserFromLocalStorage()
+//     return parse
+//   }
+// }
+// const user = getUserFromLocalStorage()
 
 const initialState: InitialState = {
-  user: user || null,
-  isAuth: window.localStorage.getItem('token') ? true : false
+  user: null,
+  isAuth: false
 }
-
+// window.localStorage.getItem('token') ? true : false
 const authSlice = createSlice({
   name: "auth",
   initialState,
