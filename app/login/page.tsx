@@ -1,15 +1,16 @@
 "use client"
 
-import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useGetUser } from '../../logic/hooks/useGetUser'
 import { useAppSelector } from '../../logic/hooks/useRedux'
+import { $request } from '../../logic/request'
 import style from '../../styles/login.module.scss'
 
 const Login = () => {
   const { variant } = useAppSelector((state) => state.theme)
   const [value, setValue] = useState({ email: '', password: '', captcha: "captcha solution" })
-  const [user, setUser] = useState({})
+  const { setUserId, setToken } = useGetUser()
 
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, email: e.target.value }))
@@ -20,17 +21,23 @@ const Login = () => {
 
   const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (value.password.length < 20) {
-      return null
-    }
-
     try {
-      const res = await axios.post(`http://135.181.24.29//api/v1/users/login`, value)
-      setUser(res.data)
+      const body = {
+        email: value.email,
+        password: value.password,
+        captcha: value.captcha
+      }
+      const res = await $request.post(`/users/login`, body)
+      const iden = { user_id: res.data.user_id, token: res.data.token }
+
+      setToken(iden.token)
+      setUserId(iden.user_id)
+      localStorage.setItem('token', JSON.stringify(iden.token))
     } catch (er) {
       console.log(er);
     }
   }
+
   return (
     <form
       style={{

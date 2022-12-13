@@ -1,18 +1,30 @@
+import { Preahvihear } from "@next/font/google"
 import { createSlice } from "@reduxjs/toolkit"
 
 
 interface User {
-  userId: number | null
+  email: string
+  balance: number
+  api_key: string
+  services: any[]
 }
 
 interface InitialState {
-  user: User
+  user: User | null
+  isAuth: boolean
 }
 
+const getUserFromLocalStorage = () => {
+  const user: string | null = localStorage.getItem('user')
+  const parse: User = user ? JSON.parse(user) : null
+
+  return parse
+}
+const user = getUserFromLocalStorage()
+
 const initialState: InitialState = {
-  user: {
-    userId: null
-  }
+  user: user,
+  isAuth: localStorage.getItem('token') ? true : false
 }
 
 const authSlice = createSlice({
@@ -21,15 +33,14 @@ const authSlice = createSlice({
   reducers: {
     getUser(state, action) {
       state.user = action.payload
-    },
-    getUserId(state, action) {
-      state.user.userId = action.payload
+      state.isAuth = true
     },
     resetUser(state) {
-      state.user = {userId: null}
+      state.user = null
+      state.isAuth = false
     }
   },
 })
 
-export const { getUser, resetUser, getUserId } = authSlice.actions
+export const { getUser, resetUser } = authSlice.actions
 export default authSlice.reducer

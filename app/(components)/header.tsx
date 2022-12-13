@@ -1,12 +1,15 @@
 "use client"
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '../../logic/hooks/useRedux'
 import { toggleTheme } from '../../logic/redux'
 import style from '../../styles/header.module.scss'
+import dio from '../../public/dio4.jpg'
 
 const Header = () => {
     const dispatch = useAppDispatch()
+    const isAuth = useAppSelector((state) => state.auth.isAuth)
     const { activeTheme, variant } = useAppSelector((state) => state.theme) // bad. lots of renderers
     // const activeTheme = useAppSelector((state) => state.theme.activeTheme) // right
     // const variant = useAppSelector((state) => state.theme.variant) // right
@@ -43,7 +46,7 @@ const Header = () => {
         >
             <div className={style.header__container}>
                 <div className={style.header__left}>
-                    <Link className={style.header__logo} href="/">
+                    <Link className={style.header__logo} href="/hub">
                         ApiHub
                     </Link>
                     <span
@@ -76,17 +79,26 @@ const Header = () => {
                             APIs
                         </Link>
                     </nav>
-                    <div className={style.header__auth}>
-                        <Link href="/login" className={style.header__login}>
-                            Log In
-                        </Link>
-                        <Link href="/registration" className={style.header__sign}>
-                            Sign Up
-                        </Link>
-                    </div>
+                    {
+                        isAuth ?
+                            <div className={style.header__user}>
+                                <Link href='/profile'>
+                                    <Image className={style.header__user_avatar} alt="image" src={dio} placeholder="blur" />
+                                </Link>
+                            </div>
+                            :
+                            <div className={style.header__auth}>
+                                <Link href="/login" className={style.header__login}>
+                                    Log In
+                                </Link>
+                                <Link href="/registration" className={style.header__sign}>
+                                    Sign Up
+                                </Link>
+                            </div>
+                    }
                 </div>
             </div>
-        </header>
+        </header >
     )
 }
 

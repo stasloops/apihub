@@ -1,17 +1,18 @@
 "use client"
 
-import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useGetUser } from '../../logic/hooks/useGetUser'
 import { useAppSelector } from '../../logic/hooks/useRedux'
-import { $request, API_URL } from '../../logic/request'
+import { $request } from '../../logic/request'
 import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
     const { variant } = useAppSelector((state) => state.theme)
     const [value, setValue] = useState({ email: '', password: '', captcha: "captcha solution" })
-    const { setUserId } = useGetUser()
+    const { setUserId, setToken } = useGetUser()
+    const router = useRouter()
 
     const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue((prev) => ({ ...prev, email: e.target.value }))
@@ -24,27 +25,20 @@ const Registration = () => {
         e.preventDefault()
 
         try {
-            const data = {
+            const body = {
                 email: value.email,
                 password: value.password,
                 captcha: value.captcha
             }
-            // const res = await $request.post(`/users/register`, data)
-            const res = await fetch(`${API_URL}/users/register`, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(data)
-            })
+            const res = await $request.post(`/users/register`, body)
+            const iden = { user_id: res.data.user_id, token: res.data.token }
 
-            const transform: any = res.json()
-            // res.data.user_id
-            const userId: number = transform.user_id
-            setUserId(userId)
-        } catch (er) {
-            console.log(er);
+            setToken(iden.token)
+            setUserId(iden.user_id)
+            localStorage.setItem('token', JSON.stringify(iden.token))
+            router.push('/hub')
+        } catch (e) {
+            console.log(e);
         }
     }
 

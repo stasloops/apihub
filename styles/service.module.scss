@@ -1,0 +1,26 @@
+.service {
+    position: relative;
+    transition: 1s;
+    overflow: hidden;
+
+    &__container {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    &__background {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 80px);
+    }
+
+    &__title {
+        margin-top: 0;
+        color: rgb(249, 249, 249);
+        height: 100vh;
+    }
+}

@@ -83,6 +83,7 @@
         @media screen and (max-width: 900px) {
             display: none;
         }
+
         &_item {
             color: $mainSecond;
             font-size: 14px;
@@ -113,6 +114,16 @@
 
         @media screen and (max-width: 900px) {
             margin: 0;
+        }
+    }
+
+    &__user {
+        margin-left: 20px;
+        &_avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
         }
     }
 }
