@@ -9,8 +9,10 @@ const Profile = () => {
 
     const dispatch = useAppDispatch()
     const logOut = () => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('user')
+        if (typeof window !== "undefined") {
+            window.localStorage.removeItem('token')
+            window.localStorage.removeItem('user')
+        }
         dispatch(resetUser())
     }
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FC } from "react";
 import { useAppSelector } from "../../../logic/hooks/useRedux";
 import styles from '../../../styles/service.module.scss'
-import background from '../../../public/dio4.jpg'
+import background from '../../../public/tran.jpg'
 
 interface Params {
     name: string
