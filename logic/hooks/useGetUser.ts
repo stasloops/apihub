@@ -13,7 +13,7 @@ export const useGetUser = () => {
             let config = { headers: { Authorization: token } }
             const res = await $request.get(`/users/0`, config)
             dispatch(getUser(res.data))
-            localStorage.setItem('user', JSON.stringify(res.data))
+            window.localStorage.setItem('user', JSON.stringify(res.data))
         }
         fetchUser()
     }

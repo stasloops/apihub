@@ -15,7 +15,7 @@ interface InitialState {
 }
 
 const getUserFromLocalStorage = () => {
-  const user: string | null = localStorage.getItem('user')
+  const user: string | null = window.localStorage.getItem('user')
   const parse: User = user ? JSON.parse(user) : null
 
   return parse
@@ -24,7 +24,7 @@ const user = getUserFromLocalStorage()
 
 const initialState: InitialState = {
   user: user,
-  isAuth: localStorage.getItem('token') ? true : false
+  isAuth: window.localStorage.getItem('token') ? true : false
 }
 
 const authSlice = createSlice({

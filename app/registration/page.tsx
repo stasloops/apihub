@@ -35,7 +35,7 @@ const Registration = () => {
 
             setToken(iden.token)
             setUserId(iden.user_id)
-            localStorage.setItem('token', JSON.stringify(iden.token))
+            window.localStorage.setItem('token', JSON.stringify(iden.token))
             router.push('/hub')
         } catch (e) {
             console.log(e);

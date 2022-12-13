@@ -32,7 +32,7 @@ const Login = () => {
 
       setToken(iden.token)
       setUserId(iden.user_id)
-      localStorage.setItem('token', JSON.stringify(iden.token))
+      window.localStorage.setItem('token', JSON.stringify(iden.token))
     } catch (er) {
       console.log(er);
     }

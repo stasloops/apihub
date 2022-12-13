@@ -10,7 +10,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    localStorage.getItem('token')
+    window.localStorage.getItem('token')
   }, [])
 
   return (
