@@ -26,8 +26,8 @@ const Api: FC<Props> = ({ params }) => {
 
     const getService = async () => {
         const service_id = 8
-        const token = localStorage.getItem('token')
-        let config = { headers: { Authorization: token } }
+        // const token = localStorage.getItem('token')
+        // let config = { headers: { Authorization: token } }
         // const res = await $request.get(`/services/${service_id}`, config)
         // console.log(res.data);
     }
