@@ -16,14 +16,14 @@ interface InitialState {
 
 const getUserFromLocalStorage = () => {
   if (typeof window !== "undefined") {
-    const user: string | null = window.localStorage.getItem('user')
+    const user: string | null = localStorage.getItem('user')
     const parse: User = user ? JSON.parse(user) : null
 
     return parse
   }
 }
 const user = getUserFromLocalStorage()
-const isAuth = window.localStorage.getItem('token') ? true : false
+const isAuth = localStorage.getItem('token') ? true : false
 
 const initialState: InitialState = {
   user: user || null,
