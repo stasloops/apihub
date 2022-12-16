@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useGetUser } from '../../logic/hooks/useGetUser'
 import { useAppSelector } from '../../logic/hooks/useRedux'
@@ -11,6 +12,7 @@ const Login = () => {
   const { variant } = useAppSelector((state) => state.theme)
   const [value, setValue] = useState({ email: '', password: '', captcha: "captcha solution" })
   const { setUserId, setToken } = useGetUser()
+  const router = useRouter()
 
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, email: e.target.value }))
@@ -21,22 +23,26 @@ const Login = () => {
 
   const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
     try {
       const body = {
         email: value.email,
         password: value.password,
         captcha: value.captcha
       }
-      const res = await $request.post(`/users/login`, body)
+      const res = await $request.post(`/users/sign_in`, body)
       const iden = { user_id: res.data.user_id, token: res.data.token }
 
       setToken(iden.token)
       setUserId(iden.user_id)
+
       if (typeof window !== "undefined") {
         localStorage.setItem('token', JSON.stringify(iden.token))
       }
-    } catch (er) {
-      console.log(er);
+
+      router.push('/hub')
+    } catch (e) {
+      console.log(e);
     }
   }
 

@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit"
 const themeSlice = createSlice({
     name: "theme",
     initialState: {
-        activeTheme: 'white',
+        activeTheme: 'black',
         variant: {
-            color: '#000',
-            background: '#F5F5F5',
-            backgroundSecond: '#F5F5F5',
-            backgroundThree: '#e5e5e5'
+            color: '#fff',
+            background: '#222',
+            backgroundSecond: '#333',
+            backgroundThree: '#454545'
         },
     },
     reducers: {

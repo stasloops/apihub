@@ -23,10 +23,11 @@ const getUserFromLocalStorage = () => {
   }
 }
 const user = getUserFromLocalStorage()
+const isAuth = window.localStorage.getItem('token') ? true : false
 
 const initialState: InitialState = {
   user: user || null,
-  isAuth: typeof window !== "undefined" ? window.localStorage.getItem('token') ? true : false : false
+  isAuth: isAuth
 
 }
 const authSlice = createSlice({

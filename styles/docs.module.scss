@@ -1,0 +1,134 @@
+@import "./styles.scss";
+
+.endpoints {
+    &__docs {
+        padding: 20px;
+        padding-left: 50px;
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $darkSecond;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $mainSecond;
+            border-radius: 20px;
+            border: 4px solid $darkSecond;
+            
+            &:hover {
+                background-color: $main;
+            }
+        }
+    }
+
+    &__request {
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #666666;
+        border-radius: 5px;
+
+        &_title {
+            margin: 0;
+            margin-right: 10px;
+            font-size: 18px;
+
+            &_box {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    &__ar {
+        transition: 0.2s;
+        display: inline-block;
+        width: 15px;
+        height: 13px;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+        color: #9f9f9f;
+        margin-right: 5px;
+    }
+
+    &__config {
+        margin-top: 50px;
+        display: none;
+
+        &_item {
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #666666;
+
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            &_title {
+                margin-bottom: 30px;
+                font-size: 13px;
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &__parameters {
+        &_item {
+            display: flex;
+            align-items: to-upper-case($string: "");
+            margin-left: 20px;
+            margin-bottom: 8px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #666666;
+
+            &:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            &_field {
+                width: 20%;
+
+                &_name {
+                    margin: 0;
+                    margin-bottom: 5px;
+                }
+
+                &_required {
+                    color: rgb(255, 63, 63);
+                    margin: 0;
+                }
+            }
+
+            &_type {
+                &_name {
+                    margin: 0;
+                    margin-bottom: 5px;
+                    opacity: 0.5;
+                    font-size: 14px;
+                }
+
+                &_enum {
+                    margin: 0;
+
+                    &_item {
+                        background-color: #222;
+                        padding: 3px 6px;
+                        border-radius: 5px;
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,8 +2,6 @@ import DemonstrativeHubItem from './demonstrativeHubItem'
 import styles from '../../styles/hub.module.scss'
 
 const DemonstrativeHub = () => {
-    const popular = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
     const item = [
         { 
             title: 'Sports',

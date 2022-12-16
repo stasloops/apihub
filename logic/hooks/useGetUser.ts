@@ -14,7 +14,7 @@ export const useGetUser = () => {
             const res = await $request.get(`/users/0`, config)
             dispatch(getUser(res.data))
             if (typeof window !== "undefined") {
-                window.localStorage.setItem('user', JSON.stringify(res.data))
+                localStorage.setItem('user', JSON.stringify(res.data))
             }
         }
         fetchUser()

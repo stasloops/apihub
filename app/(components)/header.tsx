@@ -53,7 +53,7 @@ const Header = () => {
                         onClick={() => toggleThemeColor()}
                         style={{
                             backgroundColor: activeTheme === 'black' ? '#454545' : '#e5e5e5',
-                            justifyContent: activeTheme === 'black' ? 'end' : 'start'
+                            justifyContent: activeTheme === 'black' ? 'start' : 'end'
                         }}
                         className={style.header__theme}
                     >

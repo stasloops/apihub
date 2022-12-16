@@ -1,0 +1,79 @@
+@import "./styles.scss";
+
+.endpoints {
+
+    &__container {
+       display: flex;
+    }
+
+    &__group {
+        position: relative;
+        width: 250px;
+        height: 100vh;
+        padding: 20px;
+        padding-top: 50px;
+        padding-right: 0;
+        border-right: 1px solid #666666;
+
+        // &_content {}
+
+        &_item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 3px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: $dark;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    &__ar {
+        display: inline-block;
+        width: 10px;
+        height: 20px;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+        color: #9f9f9f;
+        margin-right: 5px;
+    }
+
+    &__endpoints {
+        margin-left: 40px;
+        margin-bottom: 5px;
+
+        &_item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0 10px 10px;
+            margin-bottom: 3px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: $dark;
+                transition: 0.3s;
+            }
+
+            &_method {
+                background-color: rgb(2, 2, 207);
+                color: #fff;
+                font-size: 9px;
+                font-weight: 700;
+                padding: 1px 0;
+                width: 35px;
+                border-radius: 20px;
+                margin-right: 10px;
+                text-align: center;
+            }
+        }
+    }
+}
