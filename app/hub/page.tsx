@@ -2,7 +2,7 @@
 
 import { useAppSelector } from '../../logic/hooks/useRedux'
 import styles from '../../styles/hub.module.scss'
-import DemonstrativeHub from '../(components)/demonstrativeHub'
+import DemonstrativeHub from '../(components)/(hub)/demonstrativeHub'
 import List from '../list/page'
 
 const Hub = () => {

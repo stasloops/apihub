@@ -1,7 +1,7 @@
 "use client"
 
 import { FC, useState } from 'react'
-import styles from '../../styles/list.module.scss'
+import styles from '../../../styles/list.module.scss'
 
 interface Categories {
     id: number

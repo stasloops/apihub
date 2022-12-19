@@ -4,9 +4,10 @@
     position: relative;
     z-index: 10;
     padding: 15px 20px;
+    min-height: 79px;
     box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px 0 rgb(0 0 0 / 6%);
     transition: 1s;
-
+    display: flex;
 
     &__container {
         width: 100%;
@@ -119,6 +120,7 @@
 
     &__user {
         margin-left: 20px;
+
         &_avatar {
             width: 45px;
             height: 45px;

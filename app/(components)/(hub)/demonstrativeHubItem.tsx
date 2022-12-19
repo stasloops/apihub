@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import dio from '../../public/dio4.jpg'
-import styles from '../../styles/hub.module.scss'
+import dio from '../../../public/dio4.jpg'
+import styles from '../../../styles/hub.module.scss'
 
 interface Item {
     title: string

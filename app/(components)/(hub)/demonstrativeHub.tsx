@@ -1,5 +1,5 @@
 import DemonstrativeHubItem from './demonstrativeHubItem'
-import styles from '../../styles/hub.module.scss'
+import styles from '../../../styles/hub.module.scss'
 
 const DemonstrativeHub = () => {
     const item = [

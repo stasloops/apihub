@@ -1,24 +1,24 @@
 import { FC, useState } from 'react'
-import { useSvg } from '../../logic/hooks/useSvg'
-import styles from '../../styles/endpoints.module.scss'
+import { useSvg } from '../../../logic/hooks/useSvg'
+import styles from '../../../styles/service/endpoints.module.scss'
 
 interface Endpoints {
     method: string
     name: string
     id: number
 }
-interface Group {
+interface Menu {
     title: string
     endpoints: Endpoints[]
 }
 
 interface Props {
-    item: Group
+    item: Menu
     activeEndpoint: number
     setActiveEndpoint: (state: number) => void
 }
 
-const GroupItem: FC<Props> = ({ item, activeEndpoint, setActiveEndpoint }) => {
+const MenuItem: FC<Props> = ({ item, activeEndpoint, setActiveEndpoint }) => {
     const [isOpen, setIsOpen] = useState(false)
     const { svg } = useSvg()
 
@@ -27,7 +27,7 @@ const GroupItem: FC<Props> = ({ item, activeEndpoint, setActiveEndpoint }) => {
             <div
                 style={{ backgroundColor: isOpen ? '#222' : '' }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={styles.endpoints__group_item}>
+                className={styles.endpoints__menu_item}>
                 <span
                     style={{ transform: isOpen ? 'rotate(90deg) translate(3px, 0)' : '' }}
                     className={styles.endpoints__ar}
@@ -59,4 +59,4 @@ const GroupItem: FC<Props> = ({ item, activeEndpoint, setActiveEndpoint }) => {
     )
 }
 
-export default GroupItem
+export default MenuItem

@@ -1,10 +1,10 @@
-@import "./styles.scss";
+@import "../styles.scss";
 
 .endpoints {
     &__docs {
         padding: 20px;
         padding-left: 50px;
-        width: 100%;
+        width: 80%;
         height: 100vh;
         overflow: auto;
 
@@ -20,28 +20,29 @@
             background-color: $mainSecond;
             border-radius: 20px;
             border: 4px solid $darkSecond;
-            
+
             &:hover {
                 background-color: $main;
             }
         }
-    }
 
-    &__request {
-        width: 50%;
-        padding: 20px;
-        border: 1px solid #666666;
-        border-radius: 5px;
+        &_item {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #666666;
+            border-radius: 5px;
+            margin-bottom: 20px;
 
-        &_title {
-            margin: 0;
-            margin-right: 10px;
-            font-size: 18px;
+            &_title {
+                margin: 0;
+                margin-right: 10px;
+                font-size: 18px;
 
-            &_box {
-                cursor: pointer;
-                display: flex;
-                align-items: center;
+                &_box {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }
@@ -56,6 +57,44 @@
         fill: currentColor;
         color: #9f9f9f;
         margin-right: 5px;
+    }
+
+    &__response {
+        margin-top: 50px;
+
+        &_item {
+            border-radius: 5px;
+
+        }
+
+        &_message {
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: rgb(218, 255, 209);
+            color: #444444;
+            font-size: 700;
+
+            &_arr {
+                position: absolute;
+                right: 10px;
+
+                transition: 0.2s;
+                display: inline-block;
+                width: 12px;
+                height: 15px;
+                stroke-width: 0;
+                stroke: currentColor;
+                fill: currentColor;
+                color: #5e5e5e;
+
+            }
+
+            &_text {
+                margin: 0 10px;
+            }
+
+        }
     }
 
     &__config {

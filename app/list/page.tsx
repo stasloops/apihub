@@ -1,7 +1,7 @@
 "use client"
 
-import FilterList from "../(components)/filterList"
-import ListApis from "../(components)/listApis"
+import FilterList from "../(components)/(list)/filterList"
+import ListApis from "../(components)/(list)/listApis"
 import { useAppSelector } from "../../logic/hooks/useRedux"
 import styles from '../../styles/list.module.scss'
 

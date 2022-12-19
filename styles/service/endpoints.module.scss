@@ -1,4 +1,4 @@
-@import "./styles.scss";
+@import "../styles.scss";
 
 .endpoints {
 
@@ -6,16 +6,14 @@
        display: flex;
     }
 
-    &__group {
+    &__menu {
         position: relative;
-        width: 250px;
+        width: 20%;
         height: 100vh;
         padding: 20px;
         padding-top: 50px;
         padding-right: 0;
         border-right: 1px solid #666666;
-
-        // &_content {}
 
         &_item {
             display: flex;

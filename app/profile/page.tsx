@@ -10,8 +10,8 @@ const Profile = () => {
     const dispatch = useAppDispatch()
     const logOut = () => {
         if (typeof window !== "undefined") {
-            window.localStorage.removeItem('token')
-            window.localStorage.removeItem('user')
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
         }
         dispatch(resetUser())
     }

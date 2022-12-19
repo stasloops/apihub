@@ -1,8 +1,8 @@
 "use client"
 
 import FilterListItem from './filterListItem'
-import styles from '../../styles/list.module.scss'
-import { filter } from '../../data'
+import styles from '../../../styles/list.module.scss'
+import { filter } from '../../../data'
 
 const FilterList = () => {
 

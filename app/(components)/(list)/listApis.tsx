@@ -1,8 +1,8 @@
-import styles from '../../styles/list.module.scss'
-import dio from '../../public/dio4.jpg'
+import styles from '../../../styles/list.module.scss'
+import dio from '../../../public/dio4.jpg'
 import Image from 'next/image'
-import { useAppSelector } from '../../logic/hooks/useRedux'
-import { useSvg } from '../../logic/hooks/useSvg'
+import { useAppSelector } from '../../../logic/hooks/useRedux'
+import { useSvg } from '../../../logic/hooks/useSvg'
 import Link from 'next/link'
 
 const ListApis = () => {

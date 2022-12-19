@@ -1,26 +1,27 @@
 import React, { useState } from 'react'
-import { useSvg } from '../../logic/hooks/useSvg'
-import styles from '../../styles/docs.module.scss'
+import { useSvg } from '../../../logic/hooks/useSvg'
+import styles from '../../../styles/service/docs.module.scss'
+import ResponseItem from './ResponseItem'
 
 const Docs = () => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpenRequest, setIsOpenRequest] = useState(false)
+    const [isOpenResponse, setIsOpenResponse] = useState(false)
     const { svg } = useSvg()
-    const request = [{ title: 'PATH PARAMETERS', params: [{ name: 'email', type: 'string' }, { name: 'email', type: 'string' }] }, { title: 'REQUEST BODY SCHEMA:', params: [] }]
 
     return (
         <div className={styles.endpoints__docs}>
             <h1>Register</h1>
-            <div className={styles.endpoints__request}>
-                <div className={styles.endpoints__request_title_box} onClick={() => setIsOpen(!isOpen)}>
-                    <h2 className={styles.endpoints__request_title}>Request</h2>
+            <div className={styles.endpoints__docs_item}>
+                <div className={styles.endpoints__docs_item_title_box} onClick={() => setIsOpenRequest(!isOpenRequest)}>
+                    <h2 className={styles.endpoints__docs_item_title}>Request</h2>
                     <span
-                        style={{ transform: isOpen ? 'rotate(90deg) translate(5px, 3px)' : '' }}
+                        style={{ transform: isOpenRequest ? 'rotate(90deg) translate(5px, 3px)' : '' }}
                         className={styles.endpoints__ar}
                     >
                         {svg.ar}
                     </span>
                 </div>
-                <div style={{ display: isOpen ? 'block' : '' }} className={styles.endpoints__config}>
+                <div style={{ display: isOpenRequest ? 'block' : '' }} className={styles.endpoints__config}>
                     <div className={styles.endpoints__config_item}>
                         <h3 className={styles.endpoints__config_item_title}>PATH PARAMETERS</h3>
                         <div className={styles.endpoints___parameters}>
@@ -103,6 +104,23 @@ const Docs = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className={styles.endpoints__docs_item}>
+                <div className={styles.endpoints__docs_item_title_box} onClick={() => setIsOpenResponse(!isOpenResponse)}>
+                    <h2 className={styles.endpoints__docs_item_title}>Response</h2>
+                    <span
+                        style={{ transform: isOpenResponse ? 'rotate(90deg) translate(5px, 3px)' : '' }}
+                        className={styles.endpoints__ar}
+                    >
+                        {svg.ar}
+                    </span>
+                </div>
+                {
+                    isOpenResponse ?
+                        < ResponseItem />
+                        :
+                        null
+                }
             </div>
         </div>
     )
