@@ -22,9 +22,13 @@ const Api: FC<Props> = ({ params }) => {
     const getService = async () => {
         const service_id = 8
         const token = Cookies.get('token')
-        // let config = { headers: { Authorization: token } }
-        const res = await $request.get(`/services/${service_id}`)
-        console.log(res.data);
+        let config = { headers: { Authorization: token } }
+
+        if (config) {
+            // const res = await $request.get(`/services/${service_id}`, config)
+            // console.log(res.data);
+        }
+       
     }
 
     useEffect(() => {
@@ -33,7 +37,7 @@ const Api: FC<Props> = ({ params }) => {
     }, [])
 
     return (
-        <div style={{ backgroundColor: variant.background, color: variant.color }} className={styles.service}>
+        <div style={{ backgroundColor: '#111', color: variant.color }} className={styles.service}>
             {/* <span style={{ display: imageActive ? '' : 'none' }} className={styles.service__background_dark}></span>
             <Image style={{ display: imageActive ? '' : 'none' }} className={styles.service__background} alt="image" src={tran} placeholder="blur" /> */}
             <div className={styles.service__container}>

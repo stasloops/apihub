@@ -1,9 +1,12 @@
 @import "../styles.scss";
 
 .endpoints {
+    border-top: 1px solid #666666;
+    background-color: #111111;
+    color: #fff;
 
     &__container {
-       display: flex;
+        display: flex;
     }
 
     &__menu {
@@ -11,7 +14,7 @@
         width: 20%;
         height: 100vh;
         padding: 20px;
-        padding-top: 50px;
+        padding-top: 100px;
         padding-right: 0;
         border-right: 1px solid #666666;
 

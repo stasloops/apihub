@@ -39,7 +39,7 @@ const Header = () => {
     return (
         <header
             style={{
-                backgroundColor: variant.backgroundSecond,
+                backgroundColor: '#111' || variant.backgroundSecond,
                 color: variant.color,
             }}
             className={style.header}

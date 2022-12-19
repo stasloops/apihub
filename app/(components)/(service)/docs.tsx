@@ -10,7 +10,7 @@ const Docs = () => {
 
     return (
         <div className={styles.endpoints__docs}>
-            <h1>Register</h1>
+            <h1 className={styles.endpoints__docs_title}>Register</h1>
             <div className={styles.endpoints__docs_item}>
                 <div className={styles.endpoints__docs_item_title_box} onClick={() => setIsOpenRequest(!isOpenRequest)}>
                     <h2 className={styles.endpoints__docs_item_title}>Request</h2>

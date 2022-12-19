@@ -1,11 +1,12 @@
 @import "./styles.scss";
 
 .header {
-    position: relative;
+    position: fixed;
+    width: 100%;
     z-index: 10;
     padding: 15px 20px;
     min-height: 79px;
-    box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px 0 rgb(0 0 0 / 6%);
+    // box-shadow: 0 1px 3px 0 #0000001a, 0 1px 2px 0 rgb(0 0 0 / 6%);
     transition: 1s;
     display: flex;
 
