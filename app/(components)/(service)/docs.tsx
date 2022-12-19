@@ -117,7 +117,10 @@ const Docs = () => {
                 </div>
                 {
                     isOpenResponse ?
-                        < ResponseItem />
+                        <div className={styles.endpoints__response_box}>
+                            <ResponseItem />
+                            <ResponseItem />
+                        </div>
                         :
                         null
                 }

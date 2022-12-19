@@ -2,10 +2,11 @@
 
 import { FC, useEffect } from "react";
 import { useAppSelector } from "../../../logic/hooks/useRedux";
-import styles from '../../../styles/service/service.module.scss'
 import { $request } from "../../../logic/request";
 import NavComponents from "../../(components)/(service)/NavComponents";
 import ShowWindow from "../../(components)/(service)/ShowWindow";
+import Cookies from 'js-cookie';
+import styles from '../../../styles/service/service.module.scss'
 
 interface Params {
     name: string
@@ -19,13 +20,10 @@ const Api: FC<Props> = ({ params }) => {
     const { variant } = useAppSelector((state) => state.theme)
 
     const getService = async () => {
-        if (1 === 1) {
-            return null
-        }
         const service_id = 8
-        const token = localStorage.getItem('token')
-        let config = { headers: { Authorization: token } }
-        const res = await $request.get(`/services/${service_id}`, config)
+        const token = Cookies.get('token')
+        // let config = { headers: { Authorization: token } }
+        const res = await $request.get(`/services/${service_id}`)
         console.log(res.data);
     }
 

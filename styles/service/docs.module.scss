@@ -60,11 +60,14 @@
     }
 
     &__response {
-        margin-top: 50px;
+        margin-bottom: 20px;
+
+        &_box {
+            margin-top: 50px;
+        }
 
         &_item {
             border-radius: 5px;
-
         }
 
         &_message {
@@ -74,6 +77,7 @@
             background-color: rgb(218, 255, 209);
             color: #444444;
             font-size: 700;
+            cursor: pointer;
 
             &_arr {
                 position: absolute;
@@ -93,6 +97,12 @@
             &_text {
                 margin: 0 10px;
             }
+
+        }
+
+        &_config {
+            padding: 10px 20px 20px 0;
+            // border: 1px solid #666666;
 
         }
     }

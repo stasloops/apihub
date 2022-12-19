@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useSvg } from '../../../logic/hooks/useSvg'
 import styles from '../../../styles/service/docs.module.scss'
+import ConfigItem from './ConfigItem'
 
 const ResponseItem = () => {
     const [isOpenMessage, setisOpenMessage] = useState(false)
@@ -19,6 +20,15 @@ const ResponseItem = () => {
                         {svg.ar}
                     </span>
                 </div>
+
+                {
+                    isOpenMessage ?
+                        <div className={styles.endpoints__response_config}>
+                            <ConfigItem />
+                        </div>
+                        :
+                        null
+                }
             </div>
         </div>
     )
