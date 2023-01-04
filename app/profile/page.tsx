@@ -14,9 +14,9 @@ const Profile = () => {
     const isAuth = useAppSelector((state) => state.auth.isAuth)
     const router = useRouter()
 
-    if (!isAuth) {
-        return router.push('/')
-    }
+    // if (!isAuth) {
+    //     return router.push('/')
+    // }
 
     const logOut = () => {
         storage.remove('user')
