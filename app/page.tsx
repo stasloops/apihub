@@ -1,6 +1,5 @@
 "use client"
 
-import { log } from 'console'
 import { useAppSelector } from '../logic/hooks/useRedux'
 import style from '../styles/home.module.css'
 

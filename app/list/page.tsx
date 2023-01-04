@@ -11,9 +11,9 @@ const List = () => {
   const router = useRouter()
   const { variant } = useAppSelector((state) => state.theme)
 
-  if (!isAuth) {
-    return router.push('/list')
-  }
+  // if (!isAuth) {
+  //   return router.push('/list')
+  // }
 
   return (
     <div
