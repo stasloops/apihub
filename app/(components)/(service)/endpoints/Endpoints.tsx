@@ -1,5 +1,5 @@
-import styles from '../../../styles/service/endpoints.module.scss'
-import Docs from './docs'
+import styles from '../../../../styles/service/endpoints.module.scss'
+import Docs from './Docs'
 import Menu from './Menu'
 
 const Endpoints = () => {

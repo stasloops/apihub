@@ -1,13 +1,29 @@
 import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-import { useSvg } from '../../../logic/hooks/useSvg'
+import React, { FC, useState } from 'react'
+import { useAppSelector } from '../../../logic/hooks/useRedux'
+import { useUpdateService } from '../../../logic/hooks/useUpdateService'
 import tran from '../../../public/tran.jpg'
 import styles from '../../../styles/service/service.module.scss'
+import InputRedact from './InputRedact'
 
-const ShowWindow = () => {
-    const { svg } = useSvg()
-    const cells = [{ category: 'Last Update', value: '1 month' }, { category: 'Up Time', value: '92%' }, { category: 'Stars', value: '527' }, { category: 'Category', value: 'Finance' }, { category: 'Verified', value: 'false' }]
+const cells = [{ category: 'Last Update', value: '1 month' }, { category: 'Up Time', value: '92%' }, { category: 'Stars', value: '527' }, { category: 'Category', value: 'Finance' }, { category: 'Verified', value: 'false' }]
+
+const ShowWindow= () => {
+    const [isRedact, setIsRedact] = useState(false)
+    const { setParams, updateService } = useUpdateService()
+    const service = useAppSelector((state) => state.service.service)
+    const docs = useAppSelector((state) => state.service.docs)
+
+    console.log(service, docs);
+    
+    const saveChanges = () => {
+        const service_id = service.service_id
+        
+        if (service_id) {
+            updateService(service_id)
+            setIsRedact(false)
+        }
+    }
 
     return (
         <div className={styles.service__show}>
@@ -19,8 +35,18 @@ const ShowWindow = () => {
                         {svg.star}
                     </span>
                 </div> */}
-                <h1 className={styles.service__title}>Translo</h1>
-                <p className={styles.service__description}>Действие сериала разворачивается в 80-х годах в тихом провинциальном городке. Благоприятное течение местной жизни нарушает загадочное исчезновение подростка по имени Уилл.</p>
+                {
+                    isRedact ?
+                        <InputRedact type="input" placeholder="name" setParam={(value: string) => setParams((prev) => ({ ...prev, name: value }))} />
+                        :
+                        <h1 className={styles.service__title}>{service?.name ? service?.name : 'Name'}</h1>
+                }
+                {
+                    isRedact ?
+                        <InputRedact type="area" placeholder="description" setParam={(value: string) => setParams((prev) => ({ ...prev, description: value }))} />
+                        :
+                        <p className={styles.service__description}>Действие сериала разворачивается в 80-х годах в тихом провинциальном городке. Благоприятное течение местной жизни нарушает загадочное исчезновение подростка по имени Уилл.</p>
+                }
                 <button className={styles.service__subscribe}>
                     Subscribe to Test
                 </button>
@@ -40,6 +66,14 @@ const ShowWindow = () => {
                     }
                 </div>
             </div>
+            <span className={styles.service__show_redact}>
+                {
+                    isRedact ?
+                        <button onClick={saveChanges} className={styles.service__show_redact_save}>save changes</button>
+                        :
+                        <span onClick={() => setIsRedact(true)} className={styles.service__show_redact_active}>r</span>
+                }
+            </span>
         </div>
     )
 }

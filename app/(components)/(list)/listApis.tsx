@@ -4,11 +4,20 @@ import Image from 'next/image'
 import { useAppSelector } from '../../../logic/hooks/useRedux'
 import { useSvg } from '../../../logic/hooks/useSvg'
 import Link from 'next/link'
+import { $request } from '../../../logic/request'
 
 const ListApis = () => {
   const a = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,]
   const { variant } = useAppSelector((state) => state.theme)
   const { svg } = useSvg()
+
+  const getAPIs = async () => {
+    const res = await $request.get('/services/')
+    console.log(res.data);
+    
+  }
+
+  getAPIs()
   return (<>
     <div style={{
       backgroundColor: variant.backgroundThree,

@@ -1,12 +1,19 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import FilterList from "../(components)/(list)/filterList"
 import ListApis from "../(components)/(list)/listApis"
 import { useAppSelector } from "../../logic/hooks/useRedux"
 import styles from '../../styles/list.module.scss'
 
 const List = () => {
+  const isAuth = useAppSelector((state) => state.auth.isAuth)
+  const router = useRouter()
   const { variant } = useAppSelector((state) => state.theme)
+
+  if (!isAuth) {
+    return router.push('/list')
+  }
 
   return (
     <div

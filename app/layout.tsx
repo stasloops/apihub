@@ -3,7 +3,7 @@ import Header from './(components)/header'
 import '../styles/globals.scss'
 import Providers from './(provider)/Providers';
 
-const font = Roboto({weight: ["300", "500", "700"]})
+const font = Roboto({ weight: ["300", "500", "700"] })
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
   return (

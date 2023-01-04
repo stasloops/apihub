@@ -14,9 +14,9 @@ const Nav:FC<Props> = ({setActiveNav, activeNav}) => {
 
     const scrollToBott = (item: string) => {
         setActiveNav(item)
-        setTimeout(() => {
-            scrollTo(0, 2000)
-        })
+        // setTimeout(() => {
+        //     scrollTo(0, 2000)
+        // })
     }
 
     return (
@@ -27,8 +27,8 @@ const Nav:FC<Props> = ({setActiveNav, activeNav}) => {
                     <div
                         className={styles.service__nav_item}
                         style={{
-                            borderBottom: activeNav === item ? '1px solid #1faee9' : '',
-                            color: activeNav === item ? '#1faee9' : '',
+                            borderBottom: activeNav === item ? '1px solid #1faee9' : '1px solid #111',
+                            color: activeNav === item ? '#1faee9' : '#fff',
                         }}
                         key={item}
                         onClick={() => scrollToBott(item)}

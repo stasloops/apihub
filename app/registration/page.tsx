@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 import { useGetUser } from '../../logic/hooks/useGetUser'
 import { useAppSelector } from '../../logic/hooks/useRedux'
 import { $request } from '../../logic/request'
-import Cookies from 'js-cookie';
 import style from '../../styles/registration.module.scss'
 
 const Registration = () => {
@@ -36,8 +35,6 @@ const Registration = () => {
 
             setToken(iden.token)
             setUserId(iden.user_id)
-
-            Cookies.set('token', iden.token)
             
             router.push('/hub')
         } catch (e) {

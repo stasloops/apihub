@@ -35,6 +35,33 @@
 
         position: relative;
         display: flex;
+
+        &_redact {
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+
+            &_active {
+                background-color: green;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            &_save {
+                border: none;
+                border-radius: 5px;
+                padding: 4px 10px;
+                background-color: $main;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
     }
 
     &__cell {
@@ -143,6 +170,30 @@
 
         &_item {
             cursor: pointer;
+        }
+    }
+
+    &__redact {
+        margin: 15px 0;
+
+        &_input {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #666666;
+            border-radius: 5px;
+            padding: 4px;
+            margin-right: 5px;
+
+            &:focus-visible {
+                outline: 0;
+            }
+        }
+
+        &_area {
+            max-width: 250px;
+            min-width: 160px;
+            min-height: 26px;
+            max-height: 150px;
         }
     }
 }

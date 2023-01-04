@@ -2,45 +2,28 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useAppDispatch, useAppSelector } from '../../logic/hooks/useRedux'
-import { toggleTheme } from '../../logic/redux'
+import {  useAppSelector } from '../../logic/hooks/useRedux'
 import style from '../../styles/header.module.scss'
 import dio from '../../public/dio4.jpg'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
-    const dispatch = useAppDispatch()
+    const [isAuthHeader, setisAuthHeader] = useState(false)
     const isAuth = useAppSelector((state) => state.auth.isAuth)
-    const { activeTheme, variant } = useAppSelector((state) => state.theme) // bad. lots of renderers
-    // const activeTheme = useAppSelector((state) => state.theme.activeTheme) // right
-    // const variant = useAppSelector((state) => state.theme.variant) // right
 
-    const theme = {
-        black: {
-            color: '#fff',
-            background: '#222',
-            backgroundSecond: '#333',
-            backgroundThree: '#454545'
-        },
-        white: {
-            color: '#000',
-            background: '#F5F5F5',
-            backgroundSecond: '#F5F5F5',
-            backgroundThree: '#e5e5e5'
-        }
-    }
-
-    const toggleThemeColor = () => {
-        if (activeTheme === "black") {
-            return dispatch(toggleTheme(theme.white))
-        }
-        dispatch(toggleTheme(theme.black))
-    }
+    useEffect(() => {
+        setisAuthHeader(isAuth)
+    }, [isAuth])
+    
+    // if (!isAuth) {
+    //     return <div>Loading</div>
+    // }
 
     return (
         <header
             style={{
-                backgroundColor: '#111' || variant.backgroundSecond,
-                color: variant.color,
+                // backgroundColor: '#111' || variant.backgroundSecond,
+                // color: variant.color,
             }}
             className={style.header}
         >
@@ -49,7 +32,7 @@ const Header = () => {
                     <Link className={style.header__logo} href="/hub">
                         ApiHub
                     </Link>
-                    <span
+                    {/* <span
                         onClick={() => toggleThemeColor()}
                         style={{
                             backgroundColor: activeTheme === 'black' ? '#454545' : '#e5e5e5',
@@ -60,12 +43,12 @@ const Header = () => {
                         <span
                             className={style.header__theme_button}
                         ></span>
-                    </span>
+                    </span> */}
                 </div>
                 <input
                     style={{
-                        backgroundColor: variant.backgroundThree,
-                        color: variant.color,
+                        // backgroundColor: variant.backgroundThree,
+                        // color: variant.color,
                     }}
                     className={style.header__input}
                     placeholder="Search for APIs"
@@ -80,12 +63,20 @@ const Header = () => {
                         </Link>
                     </nav>
                     {
-                        isAuth ?
-                            <div className={style.header__user}>
-                                <Link href='/profile'>
-                                    <Image className={style.header__user_avatar} alt="image" src={dio} placeholder="blur" />
+                        isAuthHeader ?
+                            <>
+                                <Link href="/create/service" className={style.header__create}>
+                                    +
+                                    <span className={style.header__create_message}>
+                                        Create new API
+                                    </span>
                                 </Link>
-                            </div>
+                                <div className={style.header__user}>
+                                    <Link href='/profile'>
+                                        <Image className={style.header__user_avatar} alt="image" src={dio} placeholder="blur" />
+                                    </Link>
+                                </div>
+                            </>
                             :
                             <div className={style.header__auth}>
                                 <Link href="/login" className={style.header__login}>

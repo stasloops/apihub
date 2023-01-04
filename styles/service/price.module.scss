@@ -1,0 +1,44 @@
+.price {
+    border-top: 1px solid #666666;
+
+    &__container {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    &__table {
+        margin: 100px 0;
+        // display: flex;
+        border: 1px solid #666666;
+        border-radius: 5px;
+
+        &_item {
+            width: 20%;
+
+            height: 300px;
+        }
+    }
+
+    &__features {
+        &_plans {
+            width: 20%;
+            border-bottom: 1px solid #666666;
+            border-right: 1px solid #666666;
+            padding: 10px;
+        }
+
+        &_feature {
+            width: 100%;
+            border-bottom: 1px solid #666666;
+            padding: 10px;
+        }
+
+        &_item {
+            width: 20%;
+            border-bottom: 1px solid #666666;
+            border-right: 1px solid #666666;
+            padding: 10px;
+        }
+    }
+}

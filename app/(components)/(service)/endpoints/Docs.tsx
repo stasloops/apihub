@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useSvg } from '../../../logic/hooks/useSvg'
-import styles from '../../../styles/service/docs.module.scss'
+import { useSvg } from '../../../../logic/hooks/useSvg'
+import styles from '../../../../styles/service/docs.module.scss'
 import ResponseItem from './ResponseItem'
 
 const Docs = () => {

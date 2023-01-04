@@ -14,7 +14,6 @@
         width: 20%;
         height: 100vh;
         padding: 20px;
-        padding-top: 100px;
         padding-right: 0;
         border-right: 1px solid #666666;
 
@@ -31,6 +30,83 @@
             &:hover {
                 background-color: $dark;
                 transition: 0.3s;
+            }
+        }
+
+        &_create {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+
+            &_box {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                color: #d7d7d7;
+            }
+
+            &_title {
+                font-size: 14px;
+                margin-right: 5px;
+            }
+
+            &_plus {
+                font-size: 21px;
+            }
+
+            &_form {
+                display: flex;
+                // align-items: center;
+                // justify-content: space-between;
+                // flex-direction: column;
+                padding-right: 20px;
+            }
+
+            &_input {
+                background-color: #222;
+                color: #fff;
+                border: 1px solid #666666;
+                border-radius: 5px;
+                padding: 6px 15px;
+                margin: 0 5px;
+                box-sizing: border-box;
+                &:focus-visible {
+                    outline: 0;
+                }
+            }
+
+            &_close {
+                background-color: red;
+                min-width: 30px;
+                min-height: 30px;
+                max-width: 30px;
+                max-height: 30px;
+                border-radius: 50%;
+                font-size: 22px;
+                font-weight: 700;
+                color: #fff;
+                transform: rotate(45deg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                margin-left: 5px;
+            }
+
+            &_button {
+                background-color: rgb(150, 250, 0);
+                min-width: 30px;
+                min-height: 30px;
+                max-width: 30px;
+                max-height: 30px;
+                border-radius: 50%;
+                font-size: 22px;
+                font-weight: 700;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
             }
         }
     }
@@ -69,6 +145,7 @@
                 color: #fff;
                 font-size: 9px;
                 font-weight: 700;
+                text-transform: uppercase;
                 padding: 1px 0;
                 width: 35px;
                 border-radius: 20px;

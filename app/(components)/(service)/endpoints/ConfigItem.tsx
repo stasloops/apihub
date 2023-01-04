@@ -1,4 +1,4 @@
-import styles from '../../../styles/service/docs.module.scss'
+import styles from '../../../../styles/service/docs.module.scss'
 
 const ConfigItem = () => {
     return (

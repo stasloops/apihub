@@ -2,6 +2,7 @@ import { useAppDispatch } from './useRedux';
 import { getUser } from '../redux/slices/authSlice';
 import { useState } from 'react';
 import { $request } from '../request';
+import { storage } from '../helpers/localStorage';
 
 export const useGetUser = () => {
     const dispatch = useAppDispatch()
@@ -10,12 +11,10 @@ export const useGetUser = () => {
 
     if (userId && token) {
         const fetchUser = async () => {
-            let config = { headers: { Authorization: token } }
-            const res = await $request.get(`/users/0`, config)
+            const res = await $request.get(`/users/0`)
             dispatch(getUser(res.data))
-            if (typeof window !== "undefined") {
-                localStorage.setItem('user', JSON.stringify(res.data))
-            }
+            storage.set('user', res.data)
+
         }
         fetchUser()
     }

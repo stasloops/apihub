@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import Cookies from 'js-cookie';
-
+import { storage } from "../../helpers/localStorage"
 
 interface User {
   email: string
@@ -14,21 +13,9 @@ interface InitialState {
   isAuth: boolean
 }
 
-const getUserFromLocalStorage = () => {
-  if (typeof window !== "undefined") {
-    const user: string | null = localStorage.getItem('user')
-    const parse: User = user ? JSON.parse(user) : null
-
-    return parse
-  }
-}
-
-const user = getUserFromLocalStorage()
-const isAuth = Cookies.get('token') ? true : false
-
 const initialState: InitialState = {
-  user: user || null,
-  isAuth: isAuth
+  user: storage.get('user'),
+  isAuth: storage.get('token') ? true : false
 
 }
 const authSlice = createSlice({
