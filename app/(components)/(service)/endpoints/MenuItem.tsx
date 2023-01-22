@@ -43,7 +43,7 @@ const MenuItem: FC<Props> = ({ item }) => {
                     >
                         {svg.ar}
                     </span>
-                    <input disabled={redactName ? "" : "disabled"} style={{ backgroundColor: isOpen ? '#222' : '#111' }} className={styles.endpoints__menu_item_group_name} value={item.name} />
+                    <input style={{ backgroundColor: isOpen ? '#222' : '#111' }} className={styles.endpoints__menu_item_group_name} value={item.name} />
                 </div>
 
                 <div onClick={() => setRedactName(!redactName)} className={styles.endpoints__menu_item_redact}>
