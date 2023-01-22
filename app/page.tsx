@@ -35,23 +35,23 @@ export default function Home() {
   //   ]
   // }
 
-  function calculationCount(tree: any) {
-    const stack = [tree]
-    let result = 0
-    // console.log(typeof stack); // object
-    while (stack.length > 0) {
-      const node = stack.shift()
-      if (node.value !== undefined) {
-        result += node.value
-      }
-      if (node.right?.length) {
-        stack.push(...node.right)
-        // console.log(node.right, '.');
-        // console.log(...node.right, '...');
-      }
-    }
-    return result
-  }
+  // function calculationCount(tree: any) {
+  //   const stack = [tree]
+  //   let result = 0
+  //   // console.log(typeof stack); // object
+  //   while (stack.length > 0) {
+  //     const node = stack.shift()
+  //     if (node.value !== undefined) {
+  //       result += node.value
+  //     }
+  //     if (node.right?.length) {
+  //       stack.push(...node.right)
+  //       // console.log(node.right, '.');
+  //       // console.log(...node.right, '...');
+  //     }
+  //   }
+  //   return result
+  // }
   // console.log(calculationCount(tree), 'result');
 
 
@@ -147,6 +147,52 @@ export default function Home() {
   // callLog(4)
   // callLog(5)
   // callLog(6)
+
+  // function arrayDiff(a: number[], b: number[]) {
+  //   let result: number[] = a
+
+
+  //  b.map((itemB) => {
+  //   console.count('a');
+  //   result = result.filter((item) => (item !== itemB))
+  //  })
+
+  //   console.log(result)
+  //   return result
+  // }
+
+  // arrayDiff([1, 2, 3, 3, 5, 5, 6, 10], [2, 3, 2,6])
+
+
+  // const transportsDefault = [
+  //   5000, // Поезд
+  //   2000, // Грузовик
+  //   1000, // Фургон
+  //   100, // Легковой автомобиль
+  //   10 // Почтальон
+  // ];
+
+  // const transSort = (weight: any, transports = transportsDefault) => {
+  //   let a: any = []
+
+  //   transports.forEach((item) => {
+  //     a.push({ val: item, count: 0 })
+  //   });
+
+  //   for (let i = 0; i < a.length; i++) {
+  //     while (weight >= a[i].val) {
+  //       weight -= a[i].val
+  //       ++a[i].count
+  //     }
+  //   }
+  //   if (weight !== 0) {
+  //     ++a[a.length - 1].count
+  //   }
+
+  //   return a;
+  // };
+
+  // console.log(transSort(10410), 'aa');
 
 
   return (

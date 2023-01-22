@@ -1,6 +1,5 @@
 "use client"
 
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { filter } from '../../../data'
@@ -12,7 +11,6 @@ const CreateService = () => {
     const [value, setValue] = useState({ name: '', username: '' })
     const [category, setCategory] = useState({ name: 'Advertising', id: 0 })
     const [categoryPopupIsActive, setCategoryPopupIsActive] = useState(false)
-
 
     const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue((prev) => ({ ...prev, name: e.target.value }))
@@ -81,7 +79,7 @@ const CreateService = () => {
                                     <div className={styles.create__category_items}>
                                         {
                                             filter[0].categories.map((item: any) => (
-                                                <div style={{backgroundColor: category.name === item.name ? '#1faee9' : ''}} onClick={() => changeCategory(item.name, item.id)} key={item.id} className={styles.create__category_item}>
+                                                <div style={{ backgroundColor: category.name === item.name ? '#1faee9' : '' }} onClick={() => changeCategory(item.name, item.id)} key={item.id} className={styles.create__category_item}>
                                                     {item.name}
                                                 </div>
                                             ))

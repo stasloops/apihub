@@ -6,6 +6,7 @@ interface User {
   balance: number
   api_key: string
   services: any[]
+  id: number
 }
 
 interface InitialState {

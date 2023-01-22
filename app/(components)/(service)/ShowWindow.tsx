@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
 import { useAppSelector } from '../../../logic/hooks/useRedux'
-import { useUpdateService } from '../../../logic/hooks/useUpdateService'
 import tran from '../../../public/tran.jpg'
 import styles from '../../../styles/service/service.module.scss'
 import InputRedact from './InputRedact'
@@ -10,12 +9,14 @@ const cells = [{ category: 'Last Update', value: '1 month' }, { category: 'Up Ti
 
 const ShowWindow= () => {
     const [isRedact, setIsRedact] = useState(false)
-    const { setParams, updateService } = useUpdateService()
     const service = useAppSelector((state) => state.service.service)
-    const docs = useAppSelector((state) => state.service.docs)
-
-    console.log(service, docs);
     
+    const setParams = (s: any) => {
+
+    }
+    const updateService = (id: any) => {
+
+    }
     const saveChanges = () => {
         const service_id = service.service_id
         
@@ -37,22 +38,22 @@ const ShowWindow= () => {
                 </div> */}
                 {
                     isRedact ?
-                        <InputRedact type="input" placeholder="name" setParam={(value: string) => setParams((prev) => ({ ...prev, name: value }))} />
+                        <InputRedact type="input" placeholder="name" setParam={(value: string) => setParams((prev:any) => ({ ...prev, name: value }))} />
                         :
                         <h1 className={styles.service__title}>{service?.name ? service?.name : 'Name'}</h1>
                 }
                 {
                     isRedact ?
-                        <InputRedact type="area" placeholder="description" setParam={(value: string) => setParams((prev) => ({ ...prev, description: value }))} />
+                        <InputRedact type="area" placeholder="description" setParam={(value: string) => setParams((prev:any) => ({ ...prev, description: value }))} />
                         :
-                        <p className={styles.service__description}>Действие сериала разворачивается в 80-х годах в тихом провинциальном городке. Благоприятное течение местной жизни нарушает загадочное исчезновение подростка по имени Уилл.</p>
+                        <p className={styles.service__description}>Действие сериала разворачивается в 80-х годах в тихом провинциальном городке. </p>
                 }
                 <button className={styles.service__subscribe}>
                     Subscribe to Test
                 </button>
             </div>
             <div className={styles.service__cell}>
-                <h2 className={styles.service__cell_title}>API Metrics</h2>
+                {/* <h2 className={styles.service__cell_title}>API Metrics</h2>
                 <div className={styles.service__cell_box}>
                     {
                         cells.map((item) => (
@@ -64,9 +65,9 @@ const ShowWindow= () => {
                             </div>
                         ))
                     }
-                </div>
+                </div> */}
             </div>
-            <span className={styles.service__show_redact}>
+              <span className={styles.service__show_redact}>
                 {
                     isRedact ?
                         <button onClick={saveChanges} className={styles.service__show_redact_save}>save changes</button>

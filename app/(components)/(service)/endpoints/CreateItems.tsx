@@ -1,51 +1,56 @@
-import { ChangeEvent, FC, useState } from 'react'
-import { useAppDispatch } from '../../../../logic/hooks/useRedux'
-import { ITag, setPaths, setTags } from '../../../../logic/redux/slices/serviceSlice'
-import styles from '../../../../styles/service/endpoints.module.scss'
+import { FC, useState } from 'react'
+import { useAppSelector } from '../../../../logic/hooks/useRedux'
+import Param from './CreateItems/Param'
+import styles from '../../../../styles/service/createItems.module.scss'
+import Response from './CreateItems/Response'
+import GroupAndEndpoint from './CreateItems/GroupAndEndpoint'
+import { IRequestBodyItem } from '../../../../logic/redux/slices/service/serviceInterface'
+
 
 interface Props {
     placeholder: string
-    type: 'tags' | 'paths'
-    tagName?: string
+    type: 'group' | 'endpoint' | 'param' | 'response'
+    groupId?: number
+    responseId?: number
+    requestBodyItem?: IRequestBodyItem
+    setRedactParam?: (state: number| null) => void
 }
 
-const CreateItems: FC<Props> = ({ placeholder, type, tagName }) => {
+const CreateItems: FC<Props> = ({ placeholder, type, groupId, responseId, setRedactParam, requestBodyItem }) => {
     const [isActive, setIsActive] = useState(false)
-    const [value, setValue] = useState('')
-    const dispatch = useAppDispatch()
+    const id = useAppSelector((state) => state.auth.user?.id)
+    const author_id = useAppSelector((state) => state.service.service.author_id)
 
-    const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-    }
-
-    const setItem = () => {
-        if (type === 'tags') {
-            const newItem: ITag = { name: value, paths: [] }
-            dispatch(setTags(newItem))
-        }
-       
-        if (type === 'paths') {
-            const payload: any = {
-                tagName: tagName,
-                newItem: { name: value, method: 'get' }
-            }
-            dispatch(setPaths(payload))
-        }
-
-        setIsActive(false)
+    if (id !== author_id) {
+        return null
     }
 
     return (
         <div className={styles.endpoints__menu_create}>
-            {isActive ?
-                <span className={styles.endpoints__menu_create_form}>
-                    <input onChange={e => changeValue(e)} placeholder={`${placeholder} name`} className={styles.endpoints__menu_create_input} />
-                    <span onClick={setItem} className={styles.endpoints__menu_create_button}>+</span>
-                    <span onClick={() => setIsActive(false)} className={styles.endpoints__menu_create_close}>+</span>
-                </span>
+            {isActive || requestBodyItem ?
+                <>
+                    {
+                        type === 'group' || type === 'endpoint' ?
+                            <GroupAndEndpoint type={type} groupId={groupId} placeholder={placeholder} setIsActive={setIsActive} />
+                            :
+                            null
+                    }
+                    {
+                        type === 'param' ?
+                            <Param setRedactParam={setRedactParam} requestBodyItem={requestBodyItem} responseId={responseId} placeholder={placeholder} setIsActive={setIsActive} />
+                            :
+                            null
+                    }
+                    {
+                        type === 'response' ?
+                            <Response placeholder={placeholder} setIsActive={setIsActive} />
+                            :
+                            null
+                    }
+                </>
                 :
                 <span onClick={() => setIsActive(true)} className={styles.endpoints__menu_create_box}>
-                    <span className={styles.endpoints__menu_create_title}>Create {placeholder}</span>
+                    <span className={styles.endpoints__menu_create_title}>New {placeholder}</span>
                     <span className={styles.endpoints__menu_create_plus}>+</span>
                 </span>
             }

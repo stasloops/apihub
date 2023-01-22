@@ -12,9 +12,7 @@ const ListApis = () => {
   const { svg } = useSvg()
 
   const getAPIs = async () => {
-    const res = await $request.get('/services/')
-    console.log(res.data);
-    
+    const res = await $request.get('/services/')    
   }
 
   getAPIs()

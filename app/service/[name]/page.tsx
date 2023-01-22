@@ -6,7 +6,7 @@ import { $request } from "../../../logic/request";
 import NavComponents from "../../(components)/(service)/NavComponents";
 import ShowWindow from "../../(components)/(service)/ShowWindow";
 import styles from '../../../styles/service/service.module.scss'
-import { setService } from "../../../logic/redux/slices/serviceSlice";
+import { setService } from "../../../logic/redux/slices/service/serviceSlice";
 
 interface Params {
     name: string
