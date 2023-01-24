@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import { PropsWithChildren } from "react";
-import ReduxProvider from "./ReduxProvider";
+import { PropsWithChildren } from 'react';
+import ReduxProvider from './ReduxProvider';
 
 type P = PropsWithChildren;
 
 export default function Providers({ children }: P) {
-    return ( 
-        <>
-            <ReduxProvider>
-                {children}
-            </ReduxProvider>
-        </>
-    );
+	return (
+		<>
+			<ReduxProvider>{children}</ReduxProvider>
+		</>
+	);
 }

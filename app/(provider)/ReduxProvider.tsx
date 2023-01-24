@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { PropsWithChildren } from "react";
-import { Provider } from "react-redux";
-import { store } from "../../logic/redux"
+import { PropsWithChildren } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../../logic/redux';
 
 export default function ReduxProvider({ children }: PropsWithChildren) {
-  return <Provider store={store}>{children}</Provider>;
+	return <Provider store={store}>{children}</Provider>;
 }

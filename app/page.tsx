@@ -1,204 +1,192 @@
-"use client"
+'use client';
 
-import { useAppSelector } from '../logic/hooks/useRedux'
-import style from '../styles/home.module.css'
-
+import { useAppSelector } from '../logic/hooks/useRedux';
+import style from '../styles/home.module.css';
 
 export default function Home() {
-  const { variant } = useAppSelector((state) => state.theme)
+	const { variant } = useAppSelector((state) => state.theme);
 
-  // const tree: any = {
-  //   value: 5,
-  //   right: [
-  //     {
-  //       value: 1,
-  //       right: [
-  //         {
-  //           value: 5
-  //         },
-  //         {
-  //           value: 7
-  //         }
-  //       ],
-  //     },
-  //     {
-  //       value: 10,
-  //       right: [
-  //         {
-  //           value: 5
-  //         },
-  //         {
-  //           value: 1
-  //         }
-  //       ],
-  //     },
-  //   ]
-  // }
+	// const tree: any = {
+	//   value: 5,
+	//   right: [
+	//     {
+	//       value: 1,
+	//       right: [
+	//         {
+	//           value: 5
+	//         },
+	//         {
+	//           value: 7
+	//         }
+	//       ],
+	//     },
+	//     {
+	//       value: 10,
+	//       right: [
+	//         {
+	//           value: 5
+	//         },
+	//         {
+	//           value: 1
+	//         }
+	//       ],
+	//     },
+	//   ]
+	// }
 
-  // function calculationCount(tree: any) {
-  //   const stack = [tree]
-  //   let result = 0
-  //   // console.log(typeof stack); // object
-  //   while (stack.length > 0) {
-  //     const node = stack.shift()
-  //     if (node.value !== undefined) {
-  //       result += node.value
-  //     }
-  //     if (node.right?.length) {
-  //       stack.push(...node.right)
-  //       // console.log(node.right, '.');
-  //       // console.log(...node.right, '...');
-  //     }
-  //   }
-  //   return result
-  // }
-  // console.log(calculationCount(tree), 'result');
+	// function calculationCount(tree: any) {
+	//   const stack = [tree]
+	//   let result = 0
+	//   // console.log(typeof stack); // object
+	//   while (stack.length > 0) {
+	//     const node = stack.shift()
+	//     if (node.value !== undefined) {
+	//       result += node.value
+	//     }
+	//     if (node.right?.length) {
+	//       stack.push(...node.right)
+	//       // console.log(node.right, '.');
+	//       // console.log(...node.right, '...');
+	//     }
+	//   }
+	//   return result
+	// }
+	// console.log(calculationCount(tree), 'result');
 
+	// function closure(higherSum: number) {
+	//   let balance = 0;
+	//   console.log(balance);
 
+	//   return function (sum: number) {
 
-  // function closure(higherSum: number) {
-  //   let balance = 0;
-  //   console.log(balance);
+	//     balance += sum += higherSum
+	//     console.log(`balance ${balance}`);
+	//   }
+	// }
+	// const change = closure(1000)
+	// change(50) //50
+	// change(100) //150
+	// change(-100) // 50
 
-  //   return function (sum: number) {
+	// const changeTwo = closure(100)
+	// changeTwo(500) //500
+	// changeTwo(1000) //1500
+	// changeTwo(-1000) // 500
 
-  //     balance += sum += higherSum
-  //     console.log(`balance ${balance}`);
-  //   }
-  // }
-  // const change = closure(1000)
-  // change(50) //50
-  // change(100) //150
-  // change(-100) // 50
+	// it doesn't matter the arrow or the usual function
 
-  // const changeTwo = closure(100)
-  // changeTwo(500) //500
-  // changeTwo(1000) //1500
-  // changeTwo(-1000) // 500
+	// const noneClosure = (sum: number) => {
+	//   let balance = 0;
+	//   balance += sum
+	//   console.log(`balance ${balance}`);
+	// }
 
-  // it doesn't matter the arrow or the usual function
+	// noneClosure(50)// 50
+	// noneClosure(100)//100
+	// noneClosure(-100)//-100
 
-  // const noneClosure = (sum: number) => {
-  //   let balance = 0;
-  //   balance += sum
-  //   console.log(`balance ${balance}`);
-  // }
+	//   const setVal:any = new Set()
+	//   console.log(setVal);
 
-  // noneClosure(50)// 50
-  // noneClosure(100)//100
-  // noneClosure(-100)//-100
+	//   setVal.add(1)
+	//   setVal.add(2)
+	//   setVal.add(5)
+	//   setVal.add(5)
+	//   setVal.add('ada')
+	//   setVal.add('asdf')
+	//   setVal.add('sss')
+	//  console.log(setVal.has('sss'));
+	//   console.log(setVal);
 
-  //   const setVal:any = new Set()
-  //   console.log(setVal);
+	// let user = {
+	//   firstName: "Вася",
+	//   sayHi() {
+	//     console.log(`Привет, ${this.firstName}!`)
+	//   }
+	// };
 
-  //   setVal.add(1)
-  //   setVal.add(2)
-  //   setVal.add(5)
-  //   setVal.add(5)
-  //   setVal.add('ada')
-  //   setVal.add('asdf')
-  //   setVal.add('sss')
-  //  console.log(setVal.has('sss'));
-  //   console.log(setVal);
+	// setTimeout(() => user.sayHi(), 1000);
 
-  // let user = {
-  //   firstName: "Вася",
-  //   sayHi() {
-  //     console.log(`Привет, ${this.firstName}!`)
-  //   }
-  // };
+	// const obj = {
+	//   name: 'Стас',
+	//   func () {
 
-  // setTimeout(() => user.sayHi(), 1000);
+	//     console.log(`hello ${this.name}`);
+	//   }
+	// }
 
+	// obj.func()
 
-  // const obj = {
-  //   name: 'Стас',
-  //   func () {
+	// const log = (message: any) => {
+	//   console.log(message)
+	// }
 
-  //     console.log(`hello ${this.name}`);
-  //   }
-  // }
+	// const debounce = (callback: (message: any) => void, delay: any) => {
+	//   let timer:any = null
 
-  // obj.func()
+	//   return (...message: any) => {
+	//     if (timer) {
+	//       clearInterval(timer)
+	//     }
 
-  // const log = (message: any) => {
-  //   console.log(message)
-  // }
+	//     timer = setTimeout(() => {
+	//       callback(...message)
+	//     }, delay);
+	//   }
+	// }
 
-  // const debounce = (callback: (message: any) => void, delay: any) => {
-  //   let timer:any = null
+	// const callLog = debounce(log, 10000)
 
-  //   return (...message: any) => {
-  //     if (timer) {
-  //       clearInterval(timer)
-  //     }
+	// callLog(1)
+	// callLog(2)
+	// callLog(3)
+	// callLog(4)
+	// callLog(5)
+	// callLog(6)
 
-  //     timer = setTimeout(() => {
-  //       callback(...message)
-  //     }, delay);
-  //   }
-  // }
+	// function arrayDiff(a: number[], b: number[]) {
+	//   let result: number[] = a
 
-  // const callLog = debounce(log, 10000)
+	//  b.map((itemB) => {
+	//   console.count('a');
+	//   result = result.filter((item) => (item !== itemB))
+	//  })
 
-  // callLog(1)
-  // callLog(2)
-  // callLog(3)
-  // callLog(4)
-  // callLog(5)
-  // callLog(6)
+	//   console.log(result)
+	//   return result
+	// }
 
-  // function arrayDiff(a: number[], b: number[]) {
-  //   let result: number[] = a
+	// arrayDiff([1, 2, 3, 3, 5, 5, 6, 10], [2, 3, 2,6])
 
+	// const transportsDefault = [
+	//   5000, // Поезд
+	//   2000, // Грузовик
+	//   1000, // Фургон
+	//   100, // Легковой автомобиль
+	//   10 // Почтальон
+	// ];
 
-  //  b.map((itemB) => {
-  //   console.count('a');
-  //   result = result.filter((item) => (item !== itemB))
-  //  })
+	// const transSort = (weight: any, transports = transportsDefault) => {
+	//   let a: any = []
 
-  //   console.log(result)
-  //   return result
-  // }
+	//   transports.forEach((item) => {
+	//     a.push({ val: item, count: 0 })
+	//   });
 
-  // arrayDiff([1, 2, 3, 3, 5, 5, 6, 10], [2, 3, 2,6])
+	//   for (let i = 0; i < a.length; i++) {
+	//     while (weight >= a[i].val) {
+	//       weight -= a[i].val
+	//       ++a[i].count
+	//     }
+	//   }
+	//   if (weight !== 0) {
+	//     ++a[a.length - 1].count
+	//   }
 
+	//   return a;
+	// };
 
-  // const transportsDefault = [
-  //   5000, // Поезд
-  //   2000, // Грузовик
-  //   1000, // Фургон
-  //   100, // Легковой автомобиль
-  //   10 // Почтальон
-  // ];
+	// console.log(transSort(10410), 'aa');
 
-  // const transSort = (weight: any, transports = transportsDefault) => {
-  //   let a: any = []
-
-  //   transports.forEach((item) => {
-  //     a.push({ val: item, count: 0 })
-  //   });
-
-  //   for (let i = 0; i < a.length; i++) {
-  //     while (weight >= a[i].val) {
-  //       weight -= a[i].val
-  //       ++a[i].count
-  //     }
-  //   }
-  //   if (weight !== 0) {
-  //     ++a[a.length - 1].count
-  //   }
-
-  //   return a;
-  // };
-
-  // console.log(transSort(10410), 'aa');
-
-
-  return (
-    <div style={{ backgroundColor: variant.background, color: variant.color }} className={style.app}>
-
-    </div>
-  )
+	return <div style={{ backgroundColor: variant.background, color: variant.color }} className={style.app}></div>;
 }
-
