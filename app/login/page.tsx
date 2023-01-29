@@ -10,7 +10,6 @@ import { $request } from '../../logic/request';
 import style from '../../styles/login.module.scss';
 
 const Login = () => {
-	const { variant } = useAppSelector((state) => state.theme);
 	const [value, setValue] = useState({ email: '', password: '', captcha: 'captcha solution' });
 	const { setUserId, setToken } = useGetUser();
 	const router = useRouter();
@@ -46,40 +45,16 @@ const Login = () => {
 	};
 
 	return (
-		<form
-			style={{
-				backgroundColor: variant.background,
-				color: variant.color,
-			}}
-			className={style.login}
-		>
+		<form className={style.login}>
 			<div className={style.login__container}>
 				<h1 className={style.login__title}>Log In</h1>
 				<div className={style.login__input_box}>
 					<label className={style.login__label}>Email</label>
-					<input
-						placeholder="E-mail"
-						style={{
-							backgroundColor: variant.backgroundThree,
-							color: variant.color,
-						}}
-						className={style.login__input}
-						value={value.email}
-						onChange={changeEmail}
-					/>
+					<input placeholder="E-mail" className={style.login__input} value={value.email} onChange={changeEmail} />
 				</div>
 				<div className={style.login__input_box}>
 					<label className={style.login__label}>Password</label>
-					<input
-						placeholder="Password"
-						style={{
-							backgroundColor: variant.backgroundThree,
-							color: variant.color,
-						}}
-						className={style.login__input}
-						value={value.password}
-						onChange={changePassword}
-					/>
+					<input placeholder="Password" className={style.login__input} value={value.password} onChange={changePassword} />
 				</div>
 				<button className={style.login__button} onClick={login}>
 					Log In

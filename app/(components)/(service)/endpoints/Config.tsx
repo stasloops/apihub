@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import { Select } from '../../../(ui)/Select';
+import { format } from '../../../../data';
 import { useSvg } from '../../../../logic/hooks/useSvg';
 import { IRequestBody } from '../../../../logic/redux/slices/service/serviceInterface';
 import styles from '../../../../styles/service/docs.module.scss';
@@ -12,12 +14,12 @@ interface Props {
 const Config: FC<Props> = ({ requestBody, responseId }) => {
 	const { svg } = useSvg();
 	const [redactParam, setRedactParam] = useState<number | null>(null);
+	const [category, setCategory] = useState({ name: 'Text', id: 3 });
 
 	return (
 		<div className={styles.endpoints__config_item}>
 			<h3 className={styles.endpoints__config_item_title}>
-				REQUEST BODY SCHEMA: {requestBody?.type}
-				<span className={styles.endpoints__config_item_redact}>{svg.pencil}</span>
+				REQUEST BODY SCHEMA: <Select variant="type" setActiveItem={setCategory} activeItem={category} items={format} />
 			</h3>
 			<div className={styles.endpoints___parameters}>
 				{requestBody?.items?.map((item) => (

@@ -9,14 +9,7 @@ import styles from '../../styles/profile.module.scss';
 
 const Profile = () => {
 	const dispatch = useAppDispatch();
-	const { variant } = useAppSelector((state) => state.theme);
 	const user = useAppSelector((state) => state.auth.user);
-	const isAuth = useAppSelector((state) => state.auth.isAuth);
-	const router = useRouter();
-
-	// if (!isAuth) {
-	//     return router.push('/')
-	// }
 
 	const logOut = () => {
 		storage.remove('user');
@@ -32,13 +25,7 @@ const Profile = () => {
 	};
 
 	return (
-		<div
-			style={{
-				backgroundColor: variant.background,
-				color: variant.color,
-			}}
-			className={styles.profile}
-		>
+		<div className={styles.profile}>
 			<span>email: {user?.email}</span>
 			<br />
 			<span onClick={updateUser}>balance: {user?.balance}</span>

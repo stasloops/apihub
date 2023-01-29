@@ -139,7 +139,8 @@
             &_title {
                 margin-bottom: 30px;
                 font-size: 13px;
-                opacity: 0.7;
+                display: flex;
+                align-items: center;
             }
 
             &_redact {

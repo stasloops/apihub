@@ -1,3 +1,13 @@
+export const format = [
+	{ id: 0, name: 'JSON' },
+	{ id: 1, name: 'Multipart' },
+	{ id: 3, name: 'Text' },
+];
+
+export const types = [{ name: 'boolean' }, { name: 'string' }, { name: 'number' }, { name: 'null' }, { name: 'undefind' }];
+
+export const navItem = ['Endpoints', 'Discussion', 'Price'];
+
 export const filter: any = [
 	{
 		title: 'Categories',

@@ -9,7 +9,6 @@ import { $request } from '../../logic/request';
 import style from '../../styles/registration.module.scss';
 
 const Registration = () => {
-	const { variant } = useAppSelector((state) => state.theme);
 	const [value, setValue] = useState({ email: '', password: '', captcha: 'captcha solution' });
 	const { setUserId, setToken } = useGetUser();
 	const router = useRouter();
@@ -43,40 +42,16 @@ const Registration = () => {
 	};
 
 	return (
-		<form
-			style={{
-				backgroundColor: variant.background,
-				color: variant.color,
-			}}
-			className={style.sign}
-		>
+		<form className={style.sign}>
 			<div className={style.sign__container}>
 				<h1 className={style.sign__title}>SignUp</h1>
 				<div className={style.sign__input_box}>
 					<label className={style.sign__label}>Email</label>
-					<input
-						placeholder="E-mail"
-						style={{
-							backgroundColor: variant.backgroundThree,
-							color: variant.color,
-						}}
-						className={style.sign__input}
-						value={value.email}
-						onChange={changeEmail}
-					/>
+					<input placeholder="E-mail" className={style.sign__input} value={value.email} onChange={changeEmail} />
 				</div>
 				<div className={style.sign__input_box}>
 					<label className={style.sign__label}>Password</label>
-					<input
-						placeholder="Password"
-						style={{
-							backgroundColor: variant.backgroundThree,
-							color: variant.color,
-						}}
-						className={style.sign__input}
-						value={value.password}
-						onChange={changePassword}
-					/>
+					<input placeholder="Password" className={style.sign__input} value={value.password} onChange={changePassword} />
 				</div>
 				<button className={style.sign__button} onClick={register}>
 					SIGN UP

@@ -1,32 +1,29 @@
 import styles from '../../../styles/list.module.scss';
 import dio from '../../../public/dio4.jpg';
 import Image from 'next/image';
-import { useAppSelector } from '../../../logic/hooks/useRedux';
 import { useSvg } from '../../../logic/hooks/useSvg';
 import Link from 'next/link';
 import { $request } from '../../../logic/request';
+import { useContext } from 'react';
+import { ThemeContext } from '../../(provider)/Providers';
 
 const ListApis = () => {
-	const a = [
-		1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1,
-		2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
-	];
-	const { variant } = useAppSelector((state) => state.theme);
+	const theme = useContext(ThemeContext);
 	const { svg } = useSvg();
+
+	const a = [];
+	for (let i = 0; i < 20; i++) {
+		a.push(i);
+	}
 
 	const getAPIs = async () => {
 		const res = await $request.get('/services/');
 	};
-
 	getAPIs();
+
 	return (
 		<>
-			<div
-				style={{
-					backgroundColor: variant.backgroundThree,
-				}}
-				className={styles.list__apis}
-			>
+			<div className={styles.list__apis}>
 				<div className={styles.list__apis_characteristic}>
 					<span className={styles.list__apis_characteristic_item}>Title</span>
 					<span className={styles.list__apis_characteristic_item}>Last update</span>
@@ -38,7 +35,7 @@ const ListApis = () => {
 					{a.map((item, id) => (
 						<Link
 							href={`/service/${item}`}
-							style={{ backgroundColor: item === 1 ? variant.background : variant.backgroundThree }}
+							style={{ backgroundColor: id % 2 ? theme?.theme.background : theme?.theme.backgroundSecond }}
 							className={styles.list__api}
 							key={id}
 						>
@@ -58,7 +55,7 @@ const ListApis = () => {
 					))}
 					<span
 						style={{
-							backgroundColor: variant.background,
+							backgroundColor: theme?.theme.backgroundSecond,
 						}}
 						className={styles.list__api_end}
 					>

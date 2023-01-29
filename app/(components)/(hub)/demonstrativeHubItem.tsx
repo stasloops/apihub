@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { ThemeContext } from '../../(provider)/Providers';
 import dio from '../../../public/dio4.jpg';
 import styles from '../../../styles/hub.module.scss';
 
@@ -12,12 +13,12 @@ interface Props {
 	item: Item;
 }
 const DemonstrativeHubItem: FC<Props> = ({ item }) => {
+	const theme = useContext(ThemeContext);
 	return (
-		<div className={styles.hub__demonstrative_items}>
+		<div style={{ background: theme?.theme.backgroundSecond, color: theme?.theme.color }} className={styles.hub__demonstrative_items}>
 			<h1 className={styles.hub__title}>{item.title}</h1>
 			{item.apis.map((item, id) => (
-				<div className={styles.hub__demonstrative_items_api} key={item}>
-					{/* <span className={styles.hub__demonstrative_index}>{id + 1}</span> */}
+				<div style={{ color: theme?.theme.color }} className={styles.hub__demonstrative_items_api} key={item}>
 					<Image className={styles.hub__demonstrative_img} alt="image" src={dio} placeholder="blur" />
 					<h2 className={styles.hub__demonstrative_title}>Recipe Food</h2>
 				</div>

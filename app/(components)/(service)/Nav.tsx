@@ -1,6 +1,7 @@
 'use client';
 
 import { FC } from 'react';
+import { navItem } from '../../../data';
 import styles from '../../../styles/service/service.module.scss';
 
 interface Props {
@@ -9,13 +10,8 @@ interface Props {
 }
 
 const Nav: FC<Props> = ({ setActiveNav, activeNav }) => {
-	const navItem = ['Endpoints', 'Discussion', 'Price'];
-
 	const scrollToBott = (item: string) => {
 		setActiveNav(item);
-		// setTimeout(() => {
-		//     scrollTo(0, 2000)
-		// })
 	};
 
 	return (

@@ -52,16 +52,16 @@ const MenuItem: FC<Props> = ({ item }) => {
 			</div>
 
 			{isOpen ? (
-				<div className={styles.endpoints__endpoints}>
+				<div className={styles.endpoints__items}>
 					{item?.endpoints?.map((item, id) => (
 						<div
 							style={{ backgroundColor: activeEndpoint.endpointId === item.id ? '#222' : '#111' }}
 							onClick={() => getEndpointId(item.id)}
-							className={styles.endpoints__endpoints_item}
+							className={styles.endpoints__items_item}
 							key={id}
 						>
-							<span className={styles.endpoints__endpoints_item_method}>{item.method}</span>
-							<span className={styles.endpoints__endpoints_item_name}>{item.name}</span>
+							<span className={styles.endpoints__items_item_method}>{item.method}</span>
+							<span className={styles.endpoints__items_item_name}>{item.name}</span>
 						</div>
 					))}
 				</div>

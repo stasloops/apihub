@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { useAppSelector } from '../../logic/hooks/useRedux';
 import style from '../../styles/header.module.scss';
 import dio from '../../public/dio4.jpg';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from '../(provider)/Providers';
 
 const Header = () => {
+	const theme = useContext(ThemeContext);
 	const [isAuthHeader, setisAuthHeader] = useState(false);
 	const isAuth = useAppSelector((state) => state.auth.isAuth);
 
@@ -15,45 +17,29 @@ const Header = () => {
 		setisAuthHeader(isAuth);
 	}, [isAuth]);
 
-	// if (!isAuth) {
-	//     return <div>Loading</div>
-	// }
-
 	return (
-		<header
-			style={
-				{
-					// backgroundColor: '#111' || variant.backgroundSecond,
-					// color: variant.color,
-				}
-			}
-			className={style.header}
-		>
+		<header style={theme?.theme} className={style.header}>
 			<div className={style.header__container}>
 				<div className={style.header__left}>
 					<Link className={style.header__logo} href="/hub">
 						ApiHub
 					</Link>
-					{/* <span
-                        onClick={() => toggleThemeColor()}
-                        style={{
-                            backgroundColor: activeTheme === 'black' ? '#454545' : '#e5e5e5',
-                            justifyContent: activeTheme === 'black' ? 'start' : 'end'
-                        }}
-                        className={style.header__theme}
-                    >
-                        <span
-                            className={style.header__theme_button}
-                        ></span>
-                    </span> */}
+					<span
+						onClick={theme?.changeTheme}
+						style={{
+							backgroundColor: theme?.theme.backgroundSecond,
+							justifyContent: theme?.isBlack ? 'start' : 'end',
+						}}
+						className={style.header__theme}
+					>
+						<span className={style.header__theme_button}></span>
+					</span>
 				</div>
 				<input
-					style={
-						{
-							// backgroundColor: variant.backgroundThree,
-							// color: variant.color,
-						}
-					}
+					style={{
+						backgroundColor: theme?.theme.backgroundSecond,
+						color: theme?.theme.color,
+					}}
 					className={style.header__input}
 					placeholder="Search for APIs"
 				/>
@@ -68,7 +54,13 @@ const Header = () => {
 					</nav>
 					{isAuthHeader ? (
 						<>
-							<Link href="/create/service" className={style.header__create}>
+							<Link
+								style={{
+									color: theme?.theme.color,
+								}}
+								href="/create/service"
+								className={style.header__create}
+							>
 								+<span className={style.header__create_message}>Create new API</span>
 							</Link>
 							<div className={style.header__user}>

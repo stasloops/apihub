@@ -2,8 +2,7 @@
 
 .hub {
     transition: 1s;
-    padding-top: 100px;
-
+   
     &__container {
         width: 100%;
         max-width: 95vw;
@@ -23,8 +22,6 @@
         &_items {
             width: 32%;
             padding: 15px 10px;
-            background-color: #fff;
-            color: rgb(60, 60, 60);
             border-radius: 5px;
 
             &_api {
@@ -46,7 +43,7 @@
         &_title {
             margin-left: 10px;
             font-size: 16px;
-            color: #000;
+            opacity: 0.9;
         }
 
         &_index {
@@ -74,8 +71,8 @@
             width: 17%;
             height: 70px;
             background-color: rgb(216, 87, 87);
-            color: rgba(250, 235, 215, 0);
             border-radius: 5px;
+            color: #000;
         }
     }
 }

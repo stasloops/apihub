@@ -7,27 +7,40 @@ const Price = () => {
 	return (
 		<div className={style.price}>
 			<div className={style.price__container}>
-				<div className={style.price__table}>
-					<div>
-						<div className={style.price__features}>
-							<div className={style.price__features_plans}>Plans</div>
-							<div className={style.price__features_feature}>Features</div>
-							{features.map((item) => (
-								<div className={style.price__features_item} key={item}>
-									{item}
-								</div>
-							))}
-						</div>
-					</div>
-
-					<div>
-						{items.map((item) => (
-							<div className={style.price__item} key={item}>
-								{item}
-							</div>
-						))}
-					</div>
-				</div>
+				<table className={style.price__table}>
+					<tbody className={style.price__table_content}>
+						<tr className={style.price__row}>
+							<td style={{ borderTop: '0' }} className={style.price__row_cell_first}>
+								Plans
+							</td>
+							<td style={{ borderTop: '0' }} className={style.price__row_cell}>
+								1
+							</td>
+							<td style={{ borderTop: '0' }} className={style.price__row_cell}>
+								1
+							</td>
+							<td style={{ borderTop: '0', borderRight: '0' }} className={style.price__row_cell}>
+								1
+							</td>
+						</tr>
+						<tr className={style.price__row}>
+							<td className={style.price__row_cell_first}>Requests</td>
+							<td className={style.price__row_cell}>2</td>
+							<td className={style.price__row_cell}>2</td>
+							<td style={{ borderRight: '0' }} className={style.price__row_cell}>
+								2
+							</td>
+						</tr>
+						<tr className={style.price__row}>
+							<td className={style.price__row_cell_first}>Rate Limit</td>
+							<td className={style.price__row_cell}>2</td>
+							<td className={style.price__row_cell}>2</td>
+							<td style={{ borderRight: '0' }} className={style.price__row_cell}>
+								2
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);

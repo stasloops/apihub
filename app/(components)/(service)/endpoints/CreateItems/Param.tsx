@@ -1,11 +1,10 @@
 import React, { FC, useState } from 'react';
+import { types } from '../../../../../data';
 import { useAppDispatch, useAppSelector } from '../../../../../logic/hooks/useRedux';
 import { IPayload, IRequestBodyItem, IUpdVariants } from '../../../../../logic/redux/slices/service/serviceInterface';
 import { setRequestBodyItem, updateEndpoint } from '../../../../../logic/redux/slices/service/serviceSlice';
 
 import styles from '../../../../../styles/service/createItems.module.scss';
-
-const types = [{ name: 'boolean' }, { name: 'string' }, { name: 'number' }, { name: 'null' }, { name: 'undefind' }];
 
 interface Props {
 	placeholder: string;

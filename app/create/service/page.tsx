@@ -65,7 +65,7 @@ const CreateService = () => {
 						/>
 					</div>
 					<label className={styles.create__label}>Category</label>
-					<Select setActiveItem={setCategory} activeItem={category} items={filter[0].categories} />
+					<Select variant="create" setActiveItem={setCategory} activeItem={category} items={filter[0].categories} />
 					<button onClick={(e) => create(e)} className={styles.create__button}>
 						Create
 					</button>

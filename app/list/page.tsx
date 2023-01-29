@@ -1,25 +1,15 @@
 'use client';
 
+import { useContext } from 'react';
 import FilterList from '../(components)/(list)/filterList';
 import ListApis from '../(components)/(list)/listApis';
-import { useAppSelector } from '../../logic/hooks/useRedux';
+import { ThemeContext } from '../(provider)/Providers';
 import styles from '../../styles/list.module.scss';
 
 const List = () => {
-	const { variant } = useAppSelector((state) => state.theme);
-
-	// if (!isAuth) {
-	//   return router.push('/list')
-	// }
-
+	const theme = useContext(ThemeContext);
 	return (
-		<div
-			style={{
-				backgroundColor: variant.background,
-				color: variant.color,
-			}}
-			className={styles.list}
-		>
+		<div style={{ background: theme?.theme.background, color: theme?.theme.color }} className={styles.list}>
 			<div className={styles.list__container}>
 				<h1>List APIs</h1>
 				<div className={styles.list__inner}>

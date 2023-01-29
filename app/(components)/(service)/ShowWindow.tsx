@@ -1,17 +1,9 @@
 import Image from 'next/image';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from '../../../logic/hooks/useRedux';
 import tran from '../../../public/tran.jpg';
 import styles from '../../../styles/service/service.module.scss';
 import InputRedact from './InputRedact';
-
-const cells = [
-	{ category: 'Last Update', value: '1 month' },
-	{ category: 'Up Time', value: '92%' },
-	{ category: 'Stars', value: '527' },
-	{ category: 'Category', value: 'Finance' },
-	{ category: 'Verified', value: 'false' },
-];
 
 const ShowWindow = () => {
 	const [isRedact, setIsRedact] = useState(false);
@@ -37,12 +29,6 @@ const ShowWindow = () => {
 		<div className={styles.service__show}>
 			<div>
 				<Image className={styles.service__logo} alt="image" src={tran} placeholder="blur" />
-				{/* <div className={styles.service__stars}>
-                    <span>11k</span>
-                    <span className={styles.service__stars_icon}>
-                        {svg.star}
-                    </span>
-                </div> */}
 				{isRedact ? (
 					<InputRedact type="input" placeholder="name" setParam={(value: string) => setParams((prev: any) => ({ ...prev, name: value }))} />
 				) : (
@@ -59,21 +45,7 @@ const ShowWindow = () => {
 				)}
 				<button className={styles.service__subscribe}>Subscribe to Test</button>
 			</div>
-			<div className={styles.service__cell}>
-				{/* <h2 className={styles.service__cell_title}>API Metrics</h2>
-                <div className={styles.service__cell_box}>
-                    {
-                        cells.map((item) => (
-                            <div key={item.category} className={styles.service__cell_item}>
-                                <h4 className={styles.service__cell_item_title}>{item.category}</h4>
-                                <div className={styles.service__cell_item_field}>
-                                    {item.value}
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div> */}
-			</div>
+
 			<span className={styles.service__show_redact}>
 				{isRedact ? (
 					<button onClick={saveChanges} className={styles.service__show_redact_save}>
