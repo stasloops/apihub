@@ -1,21 +1,7 @@
 import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { $request } from '../../../request';
-import {
-	firstEndpoint,
-	pushNewEndpoint,
-	pushNewRequestBodyItem,
-	pushNewResponse,
-	updateEndpointLogic,
-} from './serviceHelpers';
-import {
-	IDocs,
-	IService,
-	IInitialState,
-	IPayload,
-	IActiveEndpoint,
-	IGroup,
-	IUpdVariants,
-} from './serviceInterface';
+import { firstEndpoint, pushNewEndpoint, pushNewRequestBodyItem, pushNewResponse, updateEndpointLogic } from './serviceHelpers';
+import { IDocs, IService, IInitialState, IPayload, IActiveEndpoint, IGroup, IUpdVariants } from './serviceInterface';
 
 export const updateService = createAsyncThunk('docs/updateService', async (data: any) => {
 	const config = { headers: { 'content-type': 'multipart/form-data' } };
@@ -45,9 +31,7 @@ const serviceSlice = createSlice({
 			state.service = action.payload;
 		},
 		setActiveEndpoint(state: IInitialState, action: PayloadAction<IActiveEndpoint>) {
-			state.activeEndpoint = action.payload.endpointId
-				? action.payload
-				: firstEndpoint(state.docs.group);
+			state.activeEndpoint = action.payload.endpointId ? action.payload : firstEndpoint(state.docs.group);
 		},
 		setEndpoint(state: IInitialState, action: PayloadAction<IPayload>) {
 			state.docs.group = pushNewEndpoint(action.payload, state.docs.group);
@@ -67,13 +51,5 @@ const serviceSlice = createSlice({
 	},
 });
 
-export const {
-	updateEndpoint,
-	setGroup,
-	setEndpoint,
-	setService,
-	setActiveEndpoint,
-	setRequestBodyItem,
-	setResponse,
-} = serviceSlice.actions;
+export const { updateEndpoint, setGroup, setEndpoint, setService, setActiveEndpoint, setRequestBodyItem, setResponse } = serviceSlice.actions;
 export default serviceSlice.reducer;

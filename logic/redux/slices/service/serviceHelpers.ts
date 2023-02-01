@@ -51,7 +51,6 @@ export const firstEndpoint = (group: IGroup[]) => {
 
 export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	const newGroup: IGroup[] = replaceObjectLink(group);
-	console.log('render1', variant);
 
 	if (variant.endpointName) {
 		newGroup.forEach((item) => {
@@ -59,6 +58,18 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
 						item.name = variant.endpointName === 'null' ? '' : variant.endpointName;
+					}
+				});
+			}
+		});
+	}
+
+	if (variant.method) {
+		newGroup.forEach((item) => {
+			if (item.id === variant.groupId) {
+				item.endpoints.forEach((item) => {
+					if (item.id === variant.endpointId) {
+						item.method = variant.method;
 					}
 				});
 			}

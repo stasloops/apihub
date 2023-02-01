@@ -1,5 +1,6 @@
 export interface IUpdVariants {
 	endpointName?: string;
+	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	endpointId?: number;
 	groupId?: number;
 	newRequestBodyItem?: IRequestBodyItem;

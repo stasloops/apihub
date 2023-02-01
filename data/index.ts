@@ -1,12 +1,21 @@
+import { IMethod } from '../app/(components)/(service)/endpoints/Docs';
+
 export const format = [
 	{ id: 0, name: 'JSON' },
 	{ id: 1, name: 'Multipart' },
 	{ id: 3, name: 'Text' },
 ];
 
-export const types = [{ name: 'boolean' }, { name: 'string' }, { name: 'number' }, { name: 'null' }, { name: 'undefind' }];
+export const types = [{ name: 'boolean' }, { name: 'string' }, { name: 'number' }, { name: 'integer' }, { name: 'Array' }, { name: 'Object' }];
 
 export const navItem = ['Endpoints', 'Discussion', 'Price'];
+
+export const methods: IMethod[] = [
+	{ id: 0, name: 'get', color: '#3a9601' },
+	{ id: 1, name: 'post', color: '#0065fb' },
+	{ id: 2, name: 'put', color: '#93527b' },
+	{ id: 3, name: 'delete', color: '#e53935' },
+];
 
 export const filter: any = [
 	{

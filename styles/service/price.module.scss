@@ -27,12 +27,47 @@
             margin: 0;
             padding: 10px;
 
+
             &_first {
                 border: 1px solid #666666;
                 border-left: 0;
                 border-bottom: 0;
                 margin: 0;
                 padding: 10px;
+            }
+
+            &_content {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 15px 0;
+            }
+
+            &_title {
+                font-size: 10x;
+                margin: 0;
+                margin-bottom: 15px;
+            }
+
+            &_button {
+                border: none;
+                border-radius: 5px;
+                padding: 6px 12px;
+                color: #fff;
+                background-color: #695acda3;
+                cursor: pointer;
+            }
+
+            &_ishas {
+                margin: 0 auto;
+                transition: 0.2s;
+                display: block;
+                width: 20px;
+                height: 20px;
+                stroke-width: 0;
+                stroke: currentColor;
+                fill: currentColor;
+                color: #1B9878;
             }
         }
     }

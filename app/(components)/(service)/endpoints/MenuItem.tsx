@@ -1,10 +1,12 @@
 import { FC, useEffect, useState } from 'react';
+import { methods } from '../../../../data';
 import { useAppDispatch, useAppSelector } from '../../../../logic/hooks/useRedux';
 import { useSvg } from '../../../../logic/hooks/useSvg';
 import { IGroup } from '../../../../logic/redux/slices/service/serviceInterface';
 import { setActiveEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
 import styles from '../../../../styles/service/endpoints.module.scss';
 import CreateItems from './CreateItems';
+import { IMethod } from './Docs';
 
 interface Props {
 	item: IGroup;
@@ -30,6 +32,13 @@ const MenuItem: FC<Props> = ({ item }) => {
 			getEndpointId(0);
 		}
 	}, [item]);
+
+	const getBackground = (method: string | null) => {
+		if (method) {
+			const filtredMethod = methods.filter((item) => item.name === method);
+			return filtredMethod[0].color;
+		}
+	};
 
 	return (
 		<>
@@ -60,7 +69,9 @@ const MenuItem: FC<Props> = ({ item }) => {
 							className={styles.endpoints__items_item}
 							key={id}
 						>
-							<span className={styles.endpoints__items_item_method}>{item.method}</span>
+							<span style={{ backgroundColor: getBackground(item.method ?? null) }} className={styles.endpoints__items_item_method}>
+								{item.method !== 'delete' ? item.method : 'del'}
+							</span>
 							<span className={styles.endpoints__items_item_name}>{item.name}</span>
 						</div>
 					))}

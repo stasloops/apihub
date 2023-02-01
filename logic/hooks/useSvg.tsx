@@ -21,6 +21,11 @@ export const useSvg = () => {
 				></path>
 			</svg>
 		),
+		checkmark: (
+			<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24">
+				<path data-v-d9cdbabe="" d="M10 18.41L3.29004 11.71L4.71004 10.29L10 15.59L19.29 6.29001L20.71 7.71001L10 18.41Z"></path>
+			</svg>
+		),
 	};
 
 	return {
