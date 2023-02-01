@@ -1,5 +1,6 @@
 export interface IUpdVariants {
 	endpointName?: string;
+	groupName?: string;
 	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	endpointId?: number;
 	groupId?: number;

@@ -1,22 +1,24 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { methods } from '../../../../data';
+import { useClose } from '../../../../logic/hooks/useClose';
 import { useAppDispatch, useAppSelector } from '../../../../logic/hooks/useRedux';
 import { useSvg } from '../../../../logic/hooks/useSvg';
 import { IGroup } from '../../../../logic/redux/slices/service/serviceInterface';
-import { setActiveEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
+import { setActiveEndpoint, updateEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
 import styles from '../../../../styles/service/endpoints.module.scss';
 import CreateItems from './CreateItems';
-import { IMethod } from './Docs';
 
 interface Props {
 	item: IGroup;
 }
 
 const MenuItem: FC<Props> = ({ item }) => {
+	const dispatch = useAppDispatch();
 	const activeEndpoint = useAppSelector((state) => state.service.activeEndpoint);
 	const [redactName, setRedactName] = useState<boolean>(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const dispatch = useAppDispatch();
+	const [groupName, setGroupName] = useState<string>(item.name);
+	const { ref } = useClose(setRedactName);
 	const { svg } = useSvg();
 
 	const getEndpointId = (id: number) => {
@@ -40,25 +42,50 @@ const MenuItem: FC<Props> = ({ item }) => {
 		}
 	};
 
+	const changeGroupName = (e: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(
+			updateEndpoint({
+				groupName: e.target.value ? e.target.value : 'null',
+				groupId: item.id,
+			}),
+		);
+	};
+
+	const openRedactMode = () => {
+		setRedactName(true);
+		setTimeout(() => {
+			setIsOpen(false);
+		}, 0);
+	};
+
 	return (
 		<>
-			<div style={{ backgroundColor: isOpen ? '#222' : '#111' }} onClick={() => setIsOpen(!isOpen)} className={styles.endpoints__menu_item}>
-				<div className={styles.endpoints__menu_item_box}>
-					<span
-						style={{
-							transform: isOpen ? 'rotate(90deg) translate(3px, 0)' : 'rotate(0deg) translate(0px, 0)',
-						}}
-						className={styles.endpoints__ar}
-					>
-						{svg.ar}
-					</span>
-					<input style={{ backgroundColor: isOpen ? '#222' : '#111' }} className={styles.endpoints__menu_item_group_name} value={item.name} />
-				</div>
+			{!redactName ? (
+				<div style={{ backgroundColor: isOpen ? '#222' : '#111' }} onClick={() => setIsOpen(!isOpen)} className={styles.endpoints__menu_item}>
+					<div className={styles.endpoints__menu_item_box}>
+						<span
+							style={{
+								transform: isOpen ? 'rotate(90deg) translate(3px, 0)' : 'rotate(0deg) translate(0px, 0)',
+							}}
+							className={styles.endpoints__ar}
+						>
+							{svg.ar}
+						</span>
+						<div className={styles.endpoints__menu_item_group_name}>{item.name}</div>
+					</div>
 
-				<div onClick={() => setRedactName(!redactName)} className={styles.endpoints__menu_item_redact}>
-					<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
+					<div onClick={openRedactMode} className={styles.endpoints__menu_item_redact}>
+						<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
+					</div>
 				</div>
-			</div>
+			) : (
+				<div ref={ref} className={styles.endpoints__menu_item_group_name_input_box}>
+					<input onChange={(e) => changeGroupName(e)} value={item.name} className={styles.endpoints__menu_item_group_name_input} />
+					<div onClick={() => setRedactName(false)} className={styles.endpoints__menu_item_redact}>
+						<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
+					</div>
+				</div>
+			)}
 
 			{isOpen ? (
 				<div className={styles.endpoints__items}>

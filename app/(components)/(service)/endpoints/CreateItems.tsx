@@ -44,8 +44,8 @@ const CreateItems: FC<Props> = ({ placeholder, type, groupId, responseId, setRed
 				</>
 			) : (
 				<span onClick={() => setIsActive(true)} className={styles.endpoints__menu_create_box}>
-					<span className={styles.endpoints__menu_create_title}>New {placeholder}</span>
 					<span className={styles.endpoints__menu_create_plus}>+</span>
+					<span className={styles.endpoints__menu_create_title}>New {placeholder}</span>
 				</span>
 			)}
 		</div>

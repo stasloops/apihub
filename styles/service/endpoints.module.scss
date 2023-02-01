@@ -35,18 +35,36 @@
 
             &_box {
                 display: flex;
-                align-items: center;                
+                align-items: center;
             }
 
             &_group_name {
-                display: inline;
                 color: #eeeeee;
-                border: none;
-                transition: 0.3s;
-                width: 50%;
 
-                &:focus-visible {
-                    outline: 0;
+                &_input {
+                    padding: 10px 20px;
+                    border-radius: 5px 0 0 5px;
+                    background-color: #222;
+                    border: none;
+                    color: #fff;
+
+                    &:focus-visible {
+                        outline: 0;
+                    }
+
+                    &_box {
+                        width: 100%;
+                        background-color: #222;
+                        font-size: 16px;
+                        border-radius: 5px 0 0 5px;
+                        border: 1px solid $main;
+                        border-width: 1px 0 1px 1px;
+                        margin: 6px 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                    }
                 }
             }
 
@@ -83,6 +101,11 @@
             opacity: 1;
             transition: 0.2s;
 
+        }
+
+        &_item_group_name_input_box:hover &_item_redact {
+            opacity: 1;
+            transition: 0.2s;
         }
 
         &_create {

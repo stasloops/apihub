@@ -77,8 +77,6 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	}
 
 	if (variant.newRequestBodyItem) {
-		console.log('nice');
-
 		newGroup.forEach((groupEl) => {
 			if (groupEl.id === variant.groupId) {
 				groupEl.endpoints.forEach((endpointEl) => {
@@ -96,12 +94,18 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 		});
 	}
 
-	console.log('render2', newGroup);
+	if (variant.groupName) {
+		newGroup.forEach((item) => {
+			if (item.id === variant.groupId) {
+				item.name = variant.groupName === 'null' ? '' : variant.groupName ?? item.name;
+			}
+		});
+	}
 
 	return newGroup;
 };
 
-// helpers for helpers
+// helpers for helpers :)
 
 export const replaceObjectLink = (group: IGroup[]) => {
 	const json = JSON.stringify(group);
