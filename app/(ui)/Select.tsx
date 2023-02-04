@@ -40,7 +40,7 @@ export const Select: FC<Props> = ({ items, setActiveItem, activeItem, variant })
 				<div className={`${styles.select_items} ${styles[`select_items__variant_${variant}`]}`}>
 					{items.map((item: IArgs) => (
 						<div
-							style={{ backgroundColor: item.color }}
+							style={{ backgroundColor: item.color ? item.color : '#000' }}
 							onClick={() => selectItem(item)}
 							key={item.id}
 							className={`${styles.select_item} ${styles[`select_item__variant_${variant}`]}`}
