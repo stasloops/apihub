@@ -6,7 +6,7 @@ import styles from '../../styles/ui/select.module.scss';
 export interface IArgs {
 	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	id: number;
-	color: string;
+	color?: string;
 }
 
 interface Props {
