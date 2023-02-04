@@ -52,12 +52,12 @@ export const firstEndpoint = (group: IGroup[]) => {
 export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	const newGroup: IGroup[] = replaceObjectLink(group);
 
-	if (variant.endpointName) {
+	if (variant.endpointName !== undefined) {
 		newGroup.forEach((item) => {
 			if (item.id === variant.groupId) {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
-						item.name = variant.endpointName === 'null' ? '' : variant.endpointName;
+						item.name = variant.endpointName;
 					}
 				});
 			}
@@ -94,10 +94,10 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 		});
 	}
 
-	if (variant.groupName) {
+	if (variant.groupName !== undefined) {
 		newGroup.forEach((item) => {
 			if (item.id === variant.groupId) {
-				item.name = variant.groupName === 'null' ? '' : variant.groupName ?? item.name;
+				item.name = variant.groupName ?? '';
 			}
 		});
 	}

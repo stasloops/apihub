@@ -1,11 +1,18 @@
 import React, { FC, useState } from 'react';
+import { IMethod } from '../(components)/(service)/endpoints/Docs';
 import { useClose } from '../../logic/hooks/useClose';
 import styles from '../../styles/ui/select.module.scss';
 
+export interface IArgs {
+	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
+	id: number;
+	color: string;
+}
+
 interface Props {
 	items: any[];
-	setActiveItem: (arg: { id: number; name: string; color: string }) => void;
-	activeItem: { id: number; name: string; color?: string };
+	setActiveItem: (value: IArgs | IMethod) => void;
+	activeItem: IArgs;
 	variant: 'create' | 'type' | 'method';
 }
 
@@ -13,10 +20,11 @@ export const Select: FC<Props> = ({ items, setActiveItem, activeItem, variant })
 	const [isActive, setIsActive] = useState<boolean>(false);
 	const { ref } = useClose(setIsActive);
 
-	const selectItem = (arg: any) => {
+	const selectItem = (arg: IArgs) => {
 		setTimeout(() => {
 			setIsActive(false);
 		}, 0);
+
 		setActiveItem(arg);
 	};
 
@@ -30,7 +38,7 @@ export const Select: FC<Props> = ({ items, setActiveItem, activeItem, variant })
 			<div className={`${styles.select__item_active} ${styles[`select__item_active__variant_${variant}`]}`}>{activeItem.name}</div>
 			{isActive ? (
 				<div className={`${styles.select_items} ${styles[`select_items__variant_${variant}`]}`}>
-					{items.map((item: any) => (
+					{items.map((item: IArgs) => (
 						<div
 							style={{ backgroundColor: item.color }}
 							onClick={() => selectItem(item)}

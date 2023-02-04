@@ -45,7 +45,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 	const changeGroupName = (e: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(
 			updateEndpoint({
-				groupName: e.target.value ? e.target.value : 'null',
+				groupName: e.target.value,
 				groupId: item.id,
 			}),
 		);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Select } from '../../../(ui)/Select';
+import { IArgs, Select } from '../../../(ui)/Select';
 import { methods } from '../../../../data';
 import { useActiveEndpoint } from '../../../../logic/hooks/useActiveEndpoint';
 import { useAppDispatch, useAppSelector } from '../../../../logic/hooks/useRedux';
@@ -11,8 +11,8 @@ import CreateItems from './CreateItems';
 import ResponseItem from './ResponseItem';
 
 export interface IMethod {
-	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	id: number;
+	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	color: string;
 }
 
@@ -49,7 +49,7 @@ const Docs = () => {
 	const updateName = (name: string) => {
 		dispatch(
 			updateEndpoint({
-				endpointName: name ? name : 'null',
+				endpointName: name,
 				endpointId: activeEndpoint.endpointId,
 				groupId: activeEndpoint.groupId,
 			}),
