@@ -1,5 +1,3 @@
-import { IMethod } from '../app/(components)/(service)/endpoints/Docs';
-
 export const format = [
 	{ id: 0, name: 'JSON' },
 	{ id: 1, name: 'Multipart' },
@@ -10,7 +8,7 @@ export const types = [{ name: 'boolean' }, { name: 'string' }, { name: 'number' 
 
 export const navItem = ['Endpoints', 'Discussion', 'Price'];
 
-export const methods: IMethod[] = [
+export const methods = [
 	{ id: 0, name: 'get', color: '#3a9601' },
 	{ id: 1, name: 'post', color: '#0065fb' },
 	{ id: 2, name: 'put', color: '#93527b' },
