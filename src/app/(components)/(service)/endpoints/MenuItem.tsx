@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from 'react';
 import { methods } from '../../../../data';
 import { useClose } from '../../../../logic/hooks/useClose';

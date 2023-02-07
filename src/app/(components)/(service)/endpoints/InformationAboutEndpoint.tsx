@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Select } from '../../../(ui)/Select';
 import { methods } from '../../../../data';
@@ -23,15 +24,13 @@ const InformationAboutEndpoint = () => {
 	});
 
 	useEffect(() => {
-		if (method.name) {
-			dispatch(
-				updateEndpoint({
-					method: method.name,
-					endpointId: activeEndpoint.endpointId,
-					groupId: activeEndpoint.groupId,
-				}),
-			);
-		}
+		dispatch(
+			updateEndpoint({
+				method: method.name,
+				endpointId: activeEndpoint.endpointId,
+				groupId: activeEndpoint.groupId,
+			}),
+		);
 	}, [method]);
 
 	useEffect(() => {
