@@ -69,7 +69,8 @@ export const updateEndpointLogic = (variant: IUpdVariants, groups: IGroup[]) => 
 			if (item.id === variant.groupId) {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
-						item.method = typeof variant.method !== 'undefined' ? (typeof variant.method !== 'string' ? variant.method : 'get') : 'get';
+						// eslint-disable-next-line no-constant-condition
+						item.method = variant.method === 'post' || 'get' || 'put' || 'delete' || 'patch' || 'options' ? variant.method : 'get';
 					}
 				});
 			}

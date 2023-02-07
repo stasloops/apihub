@@ -33,7 +33,7 @@ export interface IResponse {
 }
 export interface IEndpoint {
 	name?: string | null;
-	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
+	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
 	id: number;
 	requestBody: IRequestBody;
 	responses: IResponse[];

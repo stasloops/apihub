@@ -23,13 +23,15 @@ const InformationAboutEndpoint = () => {
 	});
 
 	useEffect(() => {
-		dispatch(
-			updateEndpoint({
-				method: method.name,
-				endpointId: activeEndpoint.endpointId,
-				groupId: activeEndpoint.groupId,
-			}),
-		);
+		if (method.name) {
+			dispatch(
+				updateEndpoint({
+					method: method.name,
+					endpointId: activeEndpoint.endpointId,
+					groupId: activeEndpoint.groupId,
+				}),
+			);
+		}
 	}, [method]);
 
 	useEffect(() => {
