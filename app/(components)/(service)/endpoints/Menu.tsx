@@ -5,15 +5,15 @@ import CreateItems from './CreateItems';
 import MenuItem from './MenuItem';
 
 const Menu = () => {
-	const group = useAppSelector((state) => state.service.docs.group);
+	const groups = useAppSelector((state) => state.service.documentation.groups);
 
 	return (
 		<div className={styles.endpoints__menu}>
 			<div className={styles.endpoints__menu_content}>
 				<CreateItems placeholder="Group" type="group" />
 
-				{group.map((item: IGroup, id: number) => (
-					<MenuItem key={id} item={item} />
+				{groups.map((groupItem: IGroup, id: number) => (
+					<MenuItem key={id} groupItem={groupItem} />
 				))}
 			</div>
 		</div>

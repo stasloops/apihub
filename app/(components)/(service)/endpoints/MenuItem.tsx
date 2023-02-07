@@ -9,22 +9,21 @@ import styles from '../../../../styles/service/endpoints.module.scss';
 import CreateItems from './CreateItems';
 
 interface Props {
-	item: IGroup;
+	groupItem: IGroup;
 }
 
-const MenuItem: FC<Props> = ({ item }) => {
+const MenuItem: FC<Props> = ({ groupItem }) => {
 	const dispatch = useAppDispatch();
 	const activeEndpoint = useAppSelector((state) => state.service.activeEndpoint);
 	const [redactName, setRedactName] = useState<boolean>(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const [groupName, setGroupName] = useState<string>(item.name);
 	const { ref } = useClose(setRedactName);
 	const { svg } = useSvg();
 
 	const getEndpointId = (id: number) => {
 		const data = {
 			endpointId: id,
-			groupId: item.id,
+			groupId: groupItem.id,
 		};
 		dispatch(setActiveEndpoint(data));
 	};
@@ -33,7 +32,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 		if (!activeEndpoint.endpointId) {
 			getEndpointId(0);
 		}
-	}, [item]);
+	}, [groupItem]);
 
 	const getBackground = (method: string | null) => {
 		if (method) {
@@ -46,7 +45,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 		dispatch(
 			updateEndpoint({
 				groupName: e.target.value,
-				groupId: item.id,
+				groupId: groupItem.id,
 			}),
 		);
 	};
@@ -71,7 +70,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 						>
 							{svg.ar}
 						</span>
-						<div className={styles.endpoints__menu_item_group_name}>{item.name}</div>
+						<div className={styles.endpoints__menu_item_group_name}>{groupItem.name}</div>
 					</div>
 
 					<div onClick={openRedactMode} className={styles.endpoints__menu_item_redact}>
@@ -80,7 +79,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 				</div>
 			) : (
 				<div ref={ref} className={styles.endpoints__menu_item_group_name_input_box}>
-					<input onChange={(e) => changeGroupName(e)} value={item.name} className={styles.endpoints__menu_item_group_name_input} />
+					<input onChange={(e) => changeGroupName(e)} value={groupItem.name} className={styles.endpoints__menu_item_group_name_input} />
 					<div onClick={() => setRedactName(false)} className={styles.endpoints__menu_item_redact}>
 						<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
 					</div>
@@ -89,7 +88,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 
 			{isOpen ? (
 				<div className={styles.endpoints__items}>
-					{item?.endpoints?.map((item, id) => (
+					{groupItem?.endpoints?.map((item, id) => (
 						<div
 							style={{ backgroundColor: activeEndpoint.endpointId === item.id ? '#222' : '#111' }}
 							onClick={() => getEndpointId(item.id)}
@@ -105,7 +104,7 @@ const MenuItem: FC<Props> = ({ item }) => {
 				</div>
 			) : null}
 
-			{isOpen ? <CreateItems placeholder="Endpoint" type="endpoint" groupId={item.id} /> : null}
+			{isOpen ? <CreateItems placeholder="Endpoint" type="endpoint" groupId={groupItem.id} /> : null}
 		</>
 	);
 };

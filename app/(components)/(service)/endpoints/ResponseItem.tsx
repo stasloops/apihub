@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
 import { useSvg } from '../../../../logic/hooks/useSvg';
-import { IResponses } from '../../../../logic/redux/slices/service/serviceInterface';
+import { IResponse } from '../../../../logic/redux/slices/service/serviceInterface';
 import styles from '../../../../styles/service/docs.module.scss';
 import Config from './Config';
 
 interface Props {
-	response: IResponses;
+	response: IResponse;
 }
 
 const ResponseItem: FC<Props> = ({ response }) => {

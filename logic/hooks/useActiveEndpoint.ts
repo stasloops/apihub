@@ -3,23 +3,21 @@ import { IActiveEndpoint, IEndpoint, IGroup } from '../redux/slices/service/serv
 import { useAppSelector } from './useRedux';
 
 export const useActiveEndpoint = () => {
-	const group: IGroup[] = useAppSelector((state) => state.service.docs.group);
+	const groups: IGroup[] = useAppSelector((state) => state.service.documentation.groups);
 	const activeEndpoint: IActiveEndpoint = useAppSelector((state) => state.service.activeEndpoint);
 	const [endpoint, setEndpoint] = useState<IEndpoint | null>(null);
 
 	const getEndpoint = () => {
-		const activeGroup = group.find((item) => item.id === activeEndpoint.groupId);
+		const activeGroup = groups.find((item) => item.id === activeEndpoint.groupId);
 		const endpointData = activeGroup?.endpoints.find((item) => item.id === activeEndpoint.endpointId);
 
 		return endpointData;
 	};
 
 	useEffect(() => {
-		console.log(group);
-
 		const endpointData = getEndpoint() || null;
 		setEndpoint(endpointData);
-	}, [group, activeEndpoint]);
+	}, [groups, activeEndpoint]);
 
-	return { endpoint };
+	return endpoint;
 };

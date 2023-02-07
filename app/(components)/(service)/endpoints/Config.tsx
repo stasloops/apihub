@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { Select } from '../../../(ui)/Select';
 import { format } from '../../../../data';
 import { useSvg } from '../../../../logic/hooks/useSvg';
@@ -50,4 +50,4 @@ const Config: FC<Props> = ({ requestBody, responseId }) => {
 	);
 };
 
-export default Config;
+export default memo(Config);

@@ -1,25 +1,25 @@
-import { IDocs, IGroup, IInitialState, IResponses, IPayload, IEndpoint, IUpdVariants } from './serviceInterface';
+import { IDocumentation, IGroup, IInitialState, IResponse, IPayload, IEndpoint, IUpdVariants } from './serviceInterface';
 
-export const pushNewEndpoint = (payload: IPayload, group: IGroup[]) => {
-	if (payload.groupId && payload.newEndpoint && group) {
-		const index = findElIndex(payload.groupId, group);
-		group[index].endpoints.push(payload.newEndpoint);
+export const pushNewEndpoint = (payload: IPayload, groups: IGroup[]) => {
+	if (payload.groupId && payload.newEndpoint && groups) {
+		const index = findElIndex(payload.groupId, groups);
+		groups[index].endpoints.push(payload.newEndpoint);
 	}
-	return group;
+	return groups;
 };
 
-export const pushNewResponse = (payload: IPayload, group: IGroup[]) => {
-	if (payload.groupId && payload.newResponseItem && payload.endpointId && group) {
-		const index = findElIndex(payload.groupId, group);
-		const endpointIndex = findElIndex(payload.endpointId, group[index].endpoints);
+export const pushNewResponse = (payload: IPayload, groups: IGroup[]) => {
+	if (payload.groupId && payload.newResponseItem && payload.endpointId && groups) {
+		const index = findElIndex(payload.groupId, groups);
+		const endpointIndex = findElIndex(payload.endpointId, groups[index].endpoints);
 
-		group[index].endpoints[endpointIndex].responses.push(payload.newResponseItem);
+		groups[index].endpoints[endpointIndex].responses.push(payload.newResponseItem);
 	}
-	return group;
+	return groups;
 };
 
 export const pushNewRequestBodyItem = (payload: IPayload, state: IInitialState) => {
-	const group = state.docs.group;
+	const group = state.documentation.groups;
 
 	if (payload.groupId && payload.endpointId && payload.newRequestBodyItem && group) {
 		const groupIndex = findElIndex(payload.groupId, group);
@@ -41,19 +41,19 @@ export const pushNewRequestBodyItem = (payload: IPayload, state: IInitialState) 
 	return group;
 };
 
-export const firstEndpoint = (group: IGroup[]) => {
+export const firstEndpoint = (groups: IGroup[]) => {
 	const data = {
-		endpointId: group[0]?.endpoints[0]?.id,
-		groupId: group[0].id,
+		endpointId: groups[0]?.endpoints[0]?.id,
+		groupId: groups[0].id,
 	};
 	return data;
 };
 
-export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
-	const newGroup: IGroup[] = replaceObjectLink(group);
+export const updateEndpointLogic = (variant: IUpdVariants, groups: IGroup[]) => {
+	const newGroups: IGroup[] = replaceObjectLink(groups);
 
 	if (variant.endpointName !== undefined) {
-		newGroup.forEach((item) => {
+		newGroups.forEach((item) => {
 			if (item.id === variant.groupId) {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
@@ -65,7 +65,7 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	}
 
 	if (variant.method) {
-		newGroup.forEach((item) => {
+		newGroups.forEach((item) => {
 			if (item.id === variant.groupId) {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
@@ -77,7 +77,7 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	}
 
 	if (variant.newRequestBodyItem) {
-		newGroup.forEach((groupEl) => {
+		newGroups.forEach((groupEl) => {
 			if (groupEl.id === variant.groupId) {
 				groupEl.endpoints.forEach((endpointEl) => {
 					if (endpointEl.id === variant.endpointId) {
@@ -95,26 +95,26 @@ export const updateEndpointLogic = (variant: IUpdVariants, group: IGroup[]) => {
 	}
 
 	if (variant.groupName !== undefined) {
-		newGroup.forEach((item) => {
+		newGroups.forEach((item) => {
 			if (item.id === variant.groupId) {
 				item.name = variant.groupName ?? '';
 			}
 		});
 	}
 
-	return newGroup;
+	return newGroups;
 };
 
 // helpers for helpers :)
 
-export const replaceObjectLink = (group: IGroup[]) => {
-	const json = JSON.stringify(group);
+export const replaceObjectLink = (groups: IGroup[]) => {
+	const json = JSON.stringify(groups);
 	const parse = JSON.parse(json);
 
 	return parse;
 };
 
-export const findElIndex = (id: string | number, arr: IGroup[] | IEndpoint[] | IResponses[]) => {
-	const index = arr.findIndex((item: IEndpoint | IGroup | IResponses) => item.id === id);
+export const findElIndex = (id: string | number, arr: IGroup[] | IEndpoint[] | IResponse[]) => {
+	const index = arr.findIndex((item: IEndpoint | IGroup | IResponse) => item.id === id);
 	return index;
 };

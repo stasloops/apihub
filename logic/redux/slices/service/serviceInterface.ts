@@ -1,7 +1,7 @@
 export interface IUpdVariants {
 	endpointName?: string;
 	groupName?: string;
-	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
+	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
 	endpointId?: number;
 	groupId?: number;
 	newRequestBodyItem?: IRequestBodyItem;
@@ -13,7 +13,7 @@ export interface IPayload {
 	responseId?: number;
 	newRequestBodyItem?: IRequestBodyItem;
 	newEndpoint?: IEndpoint;
-	newResponseItem?: IResponses;
+	newResponseItem?: IResponse;
 }
 export interface IRequestBodyItem {
 	required: boolean;
@@ -25,7 +25,7 @@ export interface IRequestBody {
 	type: string;
 	items: IRequestBodyItem[];
 }
-export interface IResponses {
+export interface IResponse {
 	id: number;
 	code: string;
 	message: string;
@@ -36,15 +36,15 @@ export interface IEndpoint {
 	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	id: number;
 	requestBody: IRequestBody;
-	responses: IResponses[];
+	responses: IResponse[];
 }
 export interface IGroup {
 	name: string;
 	id: number;
 	endpoints: IEndpoint[];
 }
-export interface IDocs {
-	group: IGroup[];
+export interface IDocumentation {
+	groups: IGroup[];
 	info?: object;
 }
 export interface IService {
@@ -58,6 +58,6 @@ export interface IActiveEndpoint {
 }
 export interface IInitialState {
 	service: IService;
-	docs: IDocs;
+	documentation: IDocumentation;
 	activeEndpoint: IActiveEndpoint;
 }

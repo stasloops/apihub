@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { storage } from '../../logic/helpers/localStorage';
 import { useGetUser } from '../../logic/hooks/useGetUser';
-import { useAppSelector } from '../../logic/hooks/useRedux';
 import { $request } from '../../logic/request';
 import style from '../../styles/login.module.scss';
 
