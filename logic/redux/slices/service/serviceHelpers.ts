@@ -69,7 +69,7 @@ export const updateEndpointLogic = (variant: IUpdVariants, groups: IGroup[]) => 
 			if (item.id === variant.groupId) {
 				item.endpoints.forEach((item) => {
 					if (item.id === variant.endpointId) {
-						item.method = variant.method;
+						item.method = typeof variant.method !== 'undefined' ? (typeof variant.method !== 'string' ? variant.method : 'get') : 'get';
 					}
 				});
 			}
