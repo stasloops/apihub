@@ -9,7 +9,7 @@ import styles from '../../../../styles/service/docs.module.scss';
 
 export interface IMethod {
 	id: number;
-	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
+	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
 	color: string;
 }
 

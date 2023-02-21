@@ -159,7 +159,7 @@ const Profile = () => {
 							}}
 							className={styles.profile__logout}
 						>
-							<span className={styles.profile__logout_text}>Выйти</span>
+							<span onClick={logOut} className={styles.profile__logout_text}>Выйти</span>
 						</div>
 					</div>
 					<div className={styles.profile__bottom_2}></div>
