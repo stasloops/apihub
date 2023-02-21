@@ -12,8 +12,8 @@ const Menu = () => {
 			<div className={styles.endpoints__menu_content}>
 				<CreateItems placeholder="Group" type="group" />
 
-				{groups.map((groupItem: IGroup, id: number) => (
-					<MenuItem key={id} groupItem={groupItem} />
+				{groups.map((groupItem: IGroup) => (
+					<MenuItem key={groupItem.id} groupItem={groupItem} />
 				))}
 			</div>
 		</div>

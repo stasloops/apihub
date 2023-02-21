@@ -1,17 +1,12 @@
 import React, { FC, useState } from 'react';
-import { IMethod } from '../(components)/(service)/endpoints/InformationAboutEndpoint';
+import { IArgs, IMethod } from '../(components)/(service)/endpoints/InformationAboutEndpoint';
 import { useClose } from '../../logic/hooks/useClose';
 import styles from '../../styles/ui/select.module.scss';
 
-export interface IArgs {
-	name: string;
-	id: number;
-	color?: string;
-}
-
 interface Props {
-	items: IMethod[] | IArgs[];
-	setActiveItem: (value: IMethod | IArgs) => void;
+	items: IMethod[];
+	// eslint-disable-next-line no-unused-vars
+	setActiveItem: <T>(item: T) => T;
 	activeItem: IArgs | IMethod;
 	variant: 'create' | 'type' | 'method';
 }
@@ -20,7 +15,7 @@ export const Select: FC<Props> = ({ items, setActiveItem, activeItem, variant })
 	const [isActive, setIsActive] = useState<boolean>(false);
 	const { ref } = useClose(setIsActive);
 
-	function selectItem(arg: IMethod | IArgs) {
+	function selectItem<T>(arg: T) {
 		setTimeout(() => {
 			setIsActive(false);
 		}, 0);

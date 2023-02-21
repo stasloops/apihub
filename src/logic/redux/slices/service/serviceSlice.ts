@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { $request } from '../../../request';
-import { firstEndpoint, pushNewEndpoint, pushNewRequestBodyItem, pushNewResponse, updateEndpointLogic } from './serviceHelpers';
+import { deleteServiceElLogic, firstEndpoint, pushNewEndpoint, pushNewRequestBodyItem, pushNewResponse, updateEndpointLogic } from './serviceHelpers';
 import { IDocumentation, IService, IInitialState, IPayload, IActiveEndpoint, IGroup, IUpdVariants } from './serviceInterface';
 
 export const updateService = createAsyncThunk('documentation/updateService', async (data: any) => {
@@ -48,8 +48,12 @@ const serviceSlice = createSlice({
 		updateEndpoint(state: IInitialState, action: PayloadAction<IUpdVariants>) {
 			state.documentation.groups = updateEndpointLogic(action.payload, state.documentation.groups);
 		},
+		deleteService(state: IInitialState, action: PayloadAction<IUpdVariants>) {
+			state.documentation.groups = deleteServiceElLogic(action.payload, state.documentation.groups);
+		},
 	},
 });
 
-export const { updateEndpoint, setGroup, setEndpoint, setService, setActiveEndpoint, setRequestBodyItem, setResponse } = serviceSlice.actions;
+export const { deleteService, updateEndpoint, setGroup, setEndpoint, setService, setActiveEndpoint, setRequestBodyItem, setResponse } =
+	serviceSlice.actions;
 export default serviceSlice.reducer;

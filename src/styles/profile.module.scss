@@ -1,4 +1,239 @@
+@import "./styles.scss";
+
 .profile {
-    padding-top: 100px;
+    padding-top: 50px;
     min-height: 100vh;
+
+    &__container {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+
+    &__avatar {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #6666;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &_none {
+            position: relative;
+            width: 85px;
+            height: 85px;
+            border-radius: 10px;
+            background-color: $main;
+            font-size: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        &_1 {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        &_2 {
+            width: 70%;
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        &_1 {
+            width: 25%;
+            height: 400px;
+        }
+
+        &_2 {
+            border-radius: 5px;
+            border: 1px solid #333;
+            width: 70%;
+            height: 400px;
+            background-color: $darkSecond;
+        }
+    }
+
+    &__username {}
+
+    &__achievements {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_item {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            &_icon {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #cbc6e7;
+            }
+
+            &_title {
+                color: #cbc6e7;
+                margin: 10px 0;
+            }
+
+            &_count {
+                font-size: 18px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__settings {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 5px;
+        margin-top: 20px;
+
+        &_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid $main;
+            border-right: 1px solid $main; //#cbc6e7;
+            width: 25%;
+            cursor: pointer;
+
+            &:last-child {
+                border-radius: 0 5px 5px 0;
+            }
+
+            &:first-child {
+                border-radius: 5px 0 0 5px;
+            }
+
+            &_icon {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                stroke-width: 2;
+                stroke: currentColor;
+                fill: currentColor;
+                color: $main;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    &__balance {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        background-color: $darkSecond;
+
+        &_title {
+            font-size: 12px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        &_value {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        &_button {
+            background-color: $darkSecond;
+            border: 2px solid #444;
+            border-radius: 5px;
+            padding: 10px 0;
+            width: 48%;
+            cursor: pointer;
+
+            &_box {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    &__promocode {
+        padding: 15px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        background-color: $darkSecond;
+
+        &_title {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.634);
+            margin: 0;
+        }
+
+        &_input {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: $dark;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &_button {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background-color: $main;
+            color: #fff;
+            border: none;
+            padding: 13px;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+
+    &__logout {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid #000;
+
+
+        &_text {
+            font-weight: 700;
+            text-align: center;
+            display: block;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+    }
 }

@@ -18,7 +18,7 @@ const Header = () => {
 	}, [isAuth]);
 
 	return (
-		<header style={theme?.theme} className={style.header}>
+		<header style={{ backgroundColor: theme?.isBlack ? theme?.theme.background : theme?.theme.backgroundSecond }} className={style.header}>
 			<div className={style.header__container}>
 				<div className={style.header__left}>
 					<Link className={style.header__logo} href="/hub">
@@ -27,7 +27,7 @@ const Header = () => {
 					<span
 						onClick={theme?.changeTheme}
 						style={{
-							backgroundColor: theme?.theme.backgroundSecond,
+							backgroundColor: theme?.isBlack ? theme?.theme.backgroundSecond : theme?.theme.background,
 							justifyContent: theme?.isBlack ? 'start' : 'end',
 						}}
 						className={style.header__theme}
@@ -37,7 +37,7 @@ const Header = () => {
 				</div>
 				<input
 					style={{
-						backgroundColor: theme?.theme.backgroundSecond,
+						backgroundColor: theme?.isBlack ? theme?.theme.backgroundSecond : theme?.theme.background,
 						color: theme?.theme.color,
 					}}
 					className={style.header__input}
@@ -61,7 +61,7 @@ const Header = () => {
 								href="/create/service"
 								className={style.header__create}
 							>
-								+<span className={style.header__create_message}>Create new API</span>
+								+ New API
 							</Link>
 							<div className={style.header__user}>
 								<Link href="/profile">

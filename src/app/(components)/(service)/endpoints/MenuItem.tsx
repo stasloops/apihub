@@ -5,7 +5,7 @@ import { useClose } from '../../../../logic/hooks/useClose';
 import { useAppDispatch, useAppSelector } from '../../../../logic/hooks/useRedux';
 import { useSvg } from '../../../../logic/hooks/useSvg';
 import { IGroup } from '../../../../logic/redux/slices/service/serviceInterface';
-import { setActiveEndpoint, updateEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
+import { deleteService, setActiveEndpoint, updateEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
 import styles from '../../../../styles/service/endpoints.module.scss';
 import CreateItems from './CreateItems';
 
@@ -58,6 +58,15 @@ const MenuItem: FC<Props> = ({ groupItem }) => {
 		}, 0);
 	};
 
+	const deleteGroup = (groupId: number) => {
+		dispatch(
+			deleteService({
+				groupId: groupId,
+				delete: 'group',
+			}),
+		);
+	};
+
 	return (
 		<>
 			{!redactName ? (
@@ -74,8 +83,13 @@ const MenuItem: FC<Props> = ({ groupItem }) => {
 						<div className={styles.endpoints__menu_item_group_name}>{groupItem.name}</div>
 					</div>
 
-					<div onClick={openRedactMode} className={styles.endpoints__menu_item_redact}>
-						<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
+					<div className={styles.endpoints__menu_item_box}>
+						<div onClick={openRedactMode} className={styles.endpoints__menu_item_redact}>
+							<span className={styles.endpoints__menu_item_redact_icon}>{svg.pencil}</span>
+						</div>
+						<div onClick={() => deleteGroup(groupItem.id)} className={styles.endpoints__menu_item_delete}>
+							<span className={styles.endpoints__menu_item_delete_icon}>+</span>
+						</div>
 					</div>
 				</div>
 			) : (
@@ -89,12 +103,12 @@ const MenuItem: FC<Props> = ({ groupItem }) => {
 
 			{isOpen ? (
 				<div className={styles.endpoints__items}>
-					{groupItem?.endpoints?.map((item, id) => (
+					{groupItem?.endpoints?.map((item) => (
 						<div
 							style={{ backgroundColor: activeEndpoint.endpointId === item.id ? '#222' : '#111' }}
 							onClick={() => getEndpointId(item.id)}
 							className={styles.endpoints__items_item}
-							key={id}
+							key={item.id}
 						>
 							<span style={{ backgroundColor: getBackground(item.method ?? null) }} className={styles.endpoints__items_item_method}>
 								{item.method !== 'delete' ? item.method : 'del'}

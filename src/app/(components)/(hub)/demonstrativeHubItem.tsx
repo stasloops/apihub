@@ -17,8 +17,8 @@ const DemonstrativeHubItem: FC<Props> = ({ item }) => {
 	return (
 		<div style={{ background: theme?.theme.backgroundSecond, color: theme?.theme.color }} className={styles.hub__demonstrative_items}>
 			<h1 className={styles.hub__title}>{item.title}</h1>
-			{item.apis.map((item, id) => (
-				<div style={{ color: theme?.theme.color }} className={styles.hub__demonstrative_items_api} key={item}>
+			{item.apis.map((el) => (
+				<div style={{ color: theme?.theme.color }} className={styles.hub__demonstrative_items_api} key={el}>
 					<Image className={styles.hub__demonstrative_img} alt="image" src={dio} placeholder="blur" />
 					<h2 className={styles.hub__demonstrative_title}>Recipe Food</h2>
 				</div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useContext, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../logic/hooks/useRedux';
+import { useAppDispatch } from '../../../logic/hooks/useRedux';
 import { $request } from '../../../logic/request';
 import NavComponents from '../../(components)/(service)/NavComponents';
 import ShowWindow from '../../(components)/(service)/ShowWindow';
@@ -21,6 +21,15 @@ const Api: FC<Props> = ({ params }) => {
 	const dispatch = useAppDispatch();
 	const theme = useContext(ThemeContext);
 
+	const a: { first: number; second?: number; third?: number } = { first: 1 };
+	const b = a;
+	b.second = 2;
+	(function () {
+		const b = a;
+		b.third = 3;
+	})();
+
+	console.log(a);
 	const getService = async () => {
 		try {
 			const service_id = params.name;

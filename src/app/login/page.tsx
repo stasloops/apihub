@@ -1,5 +1,6 @@
 'use client';
 
+import { GoogleLogin } from '@react-oauth/google';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -64,6 +65,14 @@ const Login = () => {
 						Sign up
 					</Link>
 				</span>
+				<GoogleLogin
+					onSuccess={(credentialResponse) => {
+						console.log(credentialResponse);
+					}}
+					onError={() => {
+						console.log('Login Failed');
+					}}
+				/>
 			</div>
 		</form>
 	);

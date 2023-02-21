@@ -1,10 +1,12 @@
 export interface IUpdVariants {
 	endpointName?: string;
 	groupName?: string;
-	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
+	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	endpointId?: number;
 	groupId?: number;
 	newRequestBodyItem?: IRequestBodyItem;
+	delete?: 'group' | 'endpoint' | 'requestBodyItem';
+	newRequestBodyItemId?: number;
 }
 
 export interface IPayload {
@@ -33,7 +35,7 @@ export interface IResponse {
 }
 export interface IEndpoint {
 	name?: string | null;
-	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
+	method?: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
 	id: number;
 	requestBody: IRequestBody;
 	responses: IResponse[];

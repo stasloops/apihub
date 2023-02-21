@@ -1,21 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import { IEndpoint } from '@/logic/redux/slices/service/serviceInterface';
+import React, { FC, useEffect, useState } from 'react';
 import { Select } from '../../../(ui)/Select';
 import { methods } from '../../../../data';
-import { useActiveEndpoint } from '../../../../logic/hooks/useActiveEndpoint';
 import { useAppDispatch, useAppSelector } from '../../../../logic/hooks/useRedux';
 import { updateEndpoint } from '../../../../logic/redux/slices/service/serviceSlice';
 import styles from '../../../../styles/service/docs.module.scss';
 
 export interface IMethod {
 	id: number;
-	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options' | string;
+	name: 'post' | 'get' | 'put' | 'delete' | 'patch' | 'options';
+	color: string;
+}
+
+export interface IArgs {
+	name: string;
+	id: number;
 	color?: string;
 }
 
-const InformationAboutEndpoint = () => {
+export interface Props {
+	endpoint: IEndpoint;
+}
+
+const InformationAboutEndpoint: FC<Props> = ({ endpoint }) => {
 	const dispatch = useAppDispatch();
-	const endpoint = useActiveEndpoint();
 	const activeEndpoint = useAppSelector((state) => state.service.activeEndpoint);
 	const [method, setMethod] = useState<IMethod>({
 		name: 'get',
@@ -36,8 +45,9 @@ const InformationAboutEndpoint = () => {
 	useEffect(() => {
 		if (endpoint?.method) {
 			const filteredMethods = methods.filter((m) => m.name === endpoint.method);
+			const filteredMethod = filteredMethods[0];
 
-			setMethod(filteredMethods[0]);
+			setMethod(filteredMethod);
 		}
 	}, [endpoint?.id]);
 

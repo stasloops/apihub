@@ -1,4 +1,4 @@
-import { IDocumentation, IGroup, IInitialState, IResponse, IPayload, IEndpoint, IUpdVariants } from './serviceInterface';
+import { IGroup, IInitialState, IResponse, IPayload, IEndpoint, IUpdVariants } from './serviceInterface';
 
 export const pushNewEndpoint = (payload: IPayload, groups: IGroup[]) => {
 	if (payload.groupId && payload.newEndpoint && groups) {
@@ -102,6 +102,42 @@ export const updateEndpointLogic = (variant: IUpdVariants, groups: IGroup[]) => 
 			}
 		});
 	}
+
+	return newGroups;
+};
+
+export const deleteServiceElLogic = (variant: IUpdVariants, groups: IGroup[]) => {
+	const newGroups: IGroup[] = replaceObjectLink(groups);
+
+	console.log('deleteServiceElLogic');
+
+	if (variant.delete === 'group') {
+		console.log(variant.groupId);
+
+		return newGroups.filter((group) => group.id !== variant.groupId);
+	}
+
+	if (variant.delete === 'endpoint') {
+		newGroups.forEach((group) => {
+			if (group.id === variant.groupId) {
+				group.endpoints = group.endpoints.filter((endpoint) => endpoint.id !== variant.endpointId);
+			}
+		});
+	}
+
+	if (variant.delete === 'requestBodyItem') {
+		newGroups.forEach((group) => {
+			if (group.id === variant.groupId) {
+				group.endpoints.forEach((endpoint) => {
+					if (endpoint.id === variant.endpointId) {
+						endpoint.requestBody.items = endpoint.requestBody.items.filter((item) => item.id !== variant.newRequestBodyItemId);
+					}
+				});
+			}
+		});
+	}
+
+	console.log('deleteServiceElLogic', newGroups);
 
 	return newGroups;
 };

@@ -79,11 +79,11 @@ const Param: FC<Props> = ({ placeholder, setIsActive, responseId, setRedactParam
 					</div>
 					{typePopupIsActive ? (
 						<div className={styles.endpoints__type_items}>
-							{types.map((item, id) => (
+							{types.map((item) => (
 								<div
 									style={{ backgroundColor: typeValue === item.name ? '#1faee9' : '' }}
 									onClick={() => changeType(item.name)}
-									key={id}
+									key={item.name}
 									className={styles.endpoints__type_item}
 								>
 									{item.name}

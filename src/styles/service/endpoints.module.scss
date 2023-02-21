@@ -68,6 +68,23 @@
                 }
             }
 
+            &_delete {
+                opacity: 0;
+                transition: 0.2s;
+                margin-right: 10px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &_icon {
+                    color: red;
+                    font-size: 22px;
+                    transform: rotate(45deg);
+                    cursor: pointer;
+                }
+            }
+
             &_redact {
                 background-color: #111111;
                 width: 22px;
@@ -95,6 +112,16 @@
                     justify-content: center;
                 }
             }
+        }
+
+        &_item:hover &_item_delete {
+            opacity: 1;
+            transition: 0.2s;
+        }
+
+        &_item_group_name_input_box:hover &_item_delete {
+            opacity: 1;
+            transition: 0.2s;
         }
 
         &_item:hover &_item_redact {

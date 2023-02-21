@@ -1,3 +1,5 @@
+import { useAppDispatch, useAppSelector } from '@/logic/hooks/useRedux';
+import { deleteService } from '@/logic/redux/slices/service/serviceSlice';
 import { FC, memo, useState } from 'react';
 import { Select } from '../../../(ui)/Select';
 import { format } from '../../../../data';
@@ -12,10 +14,25 @@ interface Props {
 }
 
 const Config: FC<Props> = ({ requestBody, responseId }) => {
+	const dispatch = useAppDispatch();
+	const activeEndpoint = useAppSelector((state) => state.service.activeEndpoint);
 	const { svg } = useSvg();
 	const [redactParam, setRedactParam] = useState<number | null>(null);
 	const [category, setCategory] = useState({ name: 'Text', id: 3 });
 
+	const deleteParam = (paramId: number | null) => {
+		if (!paramId) {
+			return;
+		}
+		dispatch(
+			deleteService({
+				endpointId: activeEndpoint.endpointId,
+				groupId: activeEndpoint.groupId,
+				newRequestBodyItemId: paramId,
+				delete: 'requestBodyItem',
+			}),
+		);
+	};
 	return (
 		<div className={styles.endpoints__config_item}>
 			<h3 className={styles.endpoints__config_item_title}>
@@ -25,7 +42,7 @@ const Config: FC<Props> = ({ requestBody, responseId }) => {
 				{requestBody?.items?.map((item) => (
 					<>
 						{redactParam !== item.id ? (
-							<div key={item.name} className={styles.endpoints__parameters_item}>
+							<div key={item.id} className={styles.endpoints__parameters_item}>
 								<div className={styles.endpoints__parameters_item_box}>
 									<div className={styles.endpoints__parameters_item_field}>
 										<p className={styles.endpoints__parameters_item_field_name}>{item.name}</p>
@@ -35,8 +52,13 @@ const Config: FC<Props> = ({ requestBody, responseId }) => {
 										<p className={styles.endpoints__parameters_item_type_name}>{item.type}</p>
 									</div>
 								</div>
-								<div onClick={() => setRedactParam(item.id)} className={styles.endpoints__parameters_item_redact}>
-									<span className={styles.endpoints__parameters_item_redact_icon}>{svg.pencil}</span>
+								<div>
+									<div onClick={() => setRedactParam(item.id)} className={styles.endpoints__parameters_item_redact}>
+										<span className={styles.endpoints__parameters_item_redact_icon}>{svg.pencil}</span>
+									</div>
+									<div onClick={() => deleteParam(item.id)} className={styles.endpoints__menu_item_delete}>
+										<span className={styles.endpoints__menu_item_delete_icon}>+</span>
+									</div>
 								</div>
 							</div>
 						) : (

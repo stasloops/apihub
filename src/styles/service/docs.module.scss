@@ -2,8 +2,8 @@
 
 .endpoints {
     &__docs {
+        position: relative;
         padding: 50px 20px 20px 50px;
-
         width: 80%;
         height: 100vh;
         overflow: auto;
@@ -40,9 +40,19 @@
             }
         }
 
-        &_method {
-            
+        &_delete {
+            cursor: pointer;
+            background-color: red;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 50px;
         }
+
+        &_method {}
 
         &_item {
             width: 50%;
