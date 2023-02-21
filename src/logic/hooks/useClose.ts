@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
+// eslint-disable-next-line no-unused-vars
 export const useClose = (toggleFunc: (state: boolean) => void) => {
 	const ref = useRef<HTMLInputElement | null>(null);
 
