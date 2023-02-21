@@ -19,7 +19,6 @@ export const useClose = (toggleFunc: (state: boolean) => void) => {
 			document.removeEventListener('click', closeHandler);
 		};
 	}, []);
-
 	return {
 		ref,
 	};
