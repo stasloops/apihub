@@ -4,14 +4,13 @@ import styles from '../../../../styles/service/docs.module.scss';
 import { useSvg } from '../../../../logic/hooks/useSvg';
 import CreateItems from './CreateItems';
 import ResponseItem from './ResponseItem';
-import { IRequestBody, IResponse } from '@/logic/redux/slices/service/serviceInterface';
+import { IEndpoint } from '@/logic/redux/slices/service/serviceInterface';
 
 interface Props {
 	variant: 'request' | 'response';
-	requestBody?: IRequestBody[];
-	responses?: IResponse[];
+	endpoint: IEndpoint;
 }
-const OpeningResponseOrRequest: FC<Props> = ({ variant, requestBody, responses }) => {
+const OpeningResponseOrRequest: FC<Props> = ({ variant, endpoint }) => {
 	const [isOpenConfig, setIsOpenConfig] = useState(false);
 	const { svg } = useSvg();
 
@@ -26,12 +25,12 @@ const OpeningResponseOrRequest: FC<Props> = ({ variant, requestBody, responses }
 
 			{variant === 'request' ? (
 				<div style={{ display: isOpenConfig ? 'block' : '' }} className={styles.endpoints__config}>
-					<Config requestBody={requestBody ?? null} />
+					<Config requestBody={endpoint.requestBody ?? null} />
 				</div>
 			) : isOpenConfig ? (
 				<div className={styles.endpoints__response_box}>
 					<CreateItems placeholder="Response" type="response" />
-					{responses?.map((item) => (
+					{endpoint.responses?.map((item) => (
 						<ResponseItem response={item} key={item.id} />
 					))}
 				</div>

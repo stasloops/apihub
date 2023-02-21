@@ -25,8 +25,8 @@ const Docs = () => {
 			{endpoint ? (
 				<>
 					<InformationAboutEndpoint endpoint={endpoint} />
-					<OpeningResponseOrRequest requestBody={endpoint.requestBody ?? null} variant="request" />
-					<OpeningResponseOrRequest responses={endpoint.responses} variant="response" />
+					<OpeningResponseOrRequest endpoint={endpoint} variant="request" />
+					<OpeningResponseOrRequest endpoint={endpoint} variant="response" />
 					<button onClick={deleteGroup} className={styles.endpoints__docs_delete}>
 						DELETE
 					</button>
